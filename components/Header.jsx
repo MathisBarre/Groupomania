@@ -1,7 +1,8 @@
+import { Fragment, useEffect } from "react"
 import Link from "next/link"
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
-import { Fragment } from "react"
+import { useConnectedUserContext } from "../utils/ConnectedUserContext"
 
 const user = {
   name: 'Chelsea Hagon',
@@ -17,6 +18,8 @@ const userNavigation = [
 ]
 
 export default function Header() {
+  const { connectedUser, setConnectedUser } = useConnectedUserContext()
+  
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
