@@ -1,31 +1,74 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { CheckIcon, XIcon } from "@heroicons/react/solid"
+import { useForm } from "react-hook-form"
 
 export default function() {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const router = useRouter()
+  
+  function onSubmit(data) {
+    console.log(data)
+    router.push("/feed")
+  }
+
+  const formPswd = watch("password") || ""
+
+  const uppercaseCondition = (localPswd) => {
+    const password = localPswd || formPswd
+    return password.search(/[A-Z]/) !== -1
+  }
+  
+  const lowercaseCondition = (localPswd) => {
+    const password = localPswd || formPswd
+    return password.search(/[a-z]/) !== -1
+  }
+
+  const numberCondition = (localPswd) => {
+    const password = localPswd || formPswd
+    return password.search(/[1-9]/) !== -1
+  }
+
+  const lengthCondition = (localPswd) => {
+    const password = localPswd || formPswd
+    return password.length >= 11
+  }
+
+  const passwordValidation = (inputValue) => {
+    return uppercaseCondition(inputValue)
+      && lowercaseCondition(inputValue)
+      && numberCondition(inputValue)
+      && lengthCondition(inputValue)
+  }
+
   return (
     <main className="flex flex-col w-full max-w-3xl py-10 mx-auto sm:px-6">
       <section className="flex flex-col w-full px-4 py-6 bg-white shadow sm:p-6 sm:rounded-lg">
         <h1 className="mb-8 text-xl font-bold text-rose-600">Créer un compte</h1>
-        <form className="flex flex-col">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <div className="flex flex-col">
             <label className="text-sm">Votre adresse e-mail</label>
             <input 
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+              className={`block w-full mt-1 ${errors.email ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} rounded-md shadow-sm  focus:ring focus:ring-opacity-50`} 
               type="email" 
-              placeholder="johndoe@mail.com" 
+              placeholder="johndoe@mail.com"
+              {...register("email", { required: true })}
             />
+            { errors.email && <p className="text-red-500">L'adresse e-mail doit être renseignée !</p> }
           </div>
           <div className="flex flex-col mt-4">
             <label className="text-sm">Votre mot de passe</label>
             <input 
-              className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" 
+              className={`${errors.password ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} block w-full mt-1 rounded-md shadow-sm focus:ring focus:ring-opacity-50`}
               type="password" 
+              {...register("password", { required: true, validate: inputValue => passwordValidation(inputValue) })}
             />
+            { errors.password && <p className="text-red-500">Les conditions ci-dessous doivent être respectée !</p> }
             <ul className="mt-2 -mx-1">
-              <Badge text="contient une majuscule" />
-              <Badge text="contient une minuscule" conditionIsFulfilled />
-              <Badge text="contient un chiffre" />
-              <Badge text="contient au moins 11 caractères" />
+              <Badge conditionIsFulfilled={uppercaseCondition} text="contient une majuscule" />
+              <Badge conditionIsFulfilled={lowercaseCondition} text="contient une minuscule" />
+              <Badge conditionIsFulfilled={numberCondition} text="contient un chiffre" />
+              <Badge conditionIsFulfilled={lengthCondition} text="contient au moins 11 caractères" />
             </ul>
           </div>
           <div className="flex items-center mt-4">
@@ -44,8 +87,8 @@ export default function() {
 
 function Badge({ text, conditionIsFulfilled }) {
   return (
-    <li className={`${conditionIsFulfilled ? 'text-green-700 bg-green-100' : 'text-gray-700 bg-gray-100'} inline-flex items-center px-2 py-1 m-1  rounded-full `}>
-      { conditionIsFulfilled ? <CheckIcon className="h-4 mr-1" /> : <XIcon className="h-4 mr-1" />}
+    <li className={`${conditionIsFulfilled() ? 'text-green-700 bg-green-100' : 'text-gray-700 bg-gray-100'} inline-flex items-center px-2 py-1 m-1  rounded-full `}>
+      { conditionIsFulfilled() ? <CheckIcon className="h-4 mr-1" /> : <XIcon className="h-4 mr-1" />}
       { text }
     </li>
   )
