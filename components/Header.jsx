@@ -1,4 +1,5 @@
-import { BellIcon, HomeIcon, MenuIcon, XIcon, SearchIcon } from '@heroicons/react/outline'
+import Link from "next/link"
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
 import { Fragment } from "react"
 
@@ -36,13 +37,15 @@ export default function Header() {
             <div className="relative flex justify-between">
               <div className="flex">
                 <div className="flex items-center flex-shrink-0">
-                  <a href="#">
-                    <img
-                      className="block w-auto h-8"
-                      src="/images/logos/icon-left-font.svg"
-                      alt="Groupomania"
-                    />
-                  </a>
+                  <Link href="/">
+                    <a>
+                      <img
+                        className="block w-auto h-8"
+                        src="/images/logos/icon-left-font.svg"
+                        alt="Groupomania"
+                      />
+                    </a>
+                  </Link>
                 </div>
               </div>
               <div className="flex-1 min-w-0 md:px-8 lg:px-0">
@@ -109,7 +112,7 @@ export default function Header() {
                   href="#"
                   className="inline-flex items-center px-4 py-2 ml-6 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
                 >
-                  New Post
+                  Nouvelle publication
                 </a>
               </div>
             </div>
