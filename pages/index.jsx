@@ -25,14 +25,12 @@ export default function Home() {
     <div className="py-10">
       <div className="max-w-3xl mx-auto sm:px-6">
         <main className="">
-          <div className="">
-            <h1 className="sr-only">posts</h1>
-            <ul className="space-y-4">
-              {posts.map((post) => (
-                <Post key={post.id} post={post} />
-              ))}
-            </ul>
-          </div>
+          <h1 className="sr-only">posts</h1>
+          <ul className="space-y-4">
+            {posts.map((post) => (
+              <Post key={post.id} post={post} />
+            ))}
+          </ul>
         </main>
       </div>
     </div>
