@@ -14,7 +14,7 @@ export default function() {
     setConnectedUser({
       name: "john doe"
     })
-    router.push("/")
+    router.push("/feed")
   }
 
   const formPswd = watch("password") || ""

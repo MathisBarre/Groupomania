@@ -1,37 +1,28 @@
-import Post from "../components/Post"
-
-const posts = [
-  {
-    id: '81614',
-    likes: '29',
-    replies: '11',
-    views: '2.7k',
-    author: {
-      name: 'Dries Vincent',
-      imageUrl:
-        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      href: '#',
-    },
-    date: '9 décembre à 11h43',
-    datetime: '2020-12-09T11:43:00',
-    href: '#',
-    title: 'Le Nyan Cat !',
-    gif: '/images/nyan-cat.gif',
-  },
-]
+import Image from "next/image"
+import Link from "next/link"
+import Logo from "../public/images/logos/icon-left-font-white.svg"
 
 export default function Home() {
   return (
-    <div className="py-10">
-      <div className="max-w-3xl mx-auto sm:px-6">
-        <main className="">
-          <h1 className="sr-only">posts</h1>
-          <ul className="space-y-4">
-            {posts.map((post) => (
-              <Post key={post.id} post={post} />
-            ))}
-          </ul>
-        </main>
+    <div className="flex flex-col flex-1">
+      <div className="flex items-end justify-start flex-1 pb-4 pl-32 bg-rose-700">
+        <Image src={Logo} height="95" width="512" />
+      </div>
+      <div className="flex justify-end px-32 py-16">
+        <Link href="/login">
+          <a
+            className="inline-flex items-center px-4 py-2 mr-2 text-lg font-medium border border-transparent rounded-md shadow-sm border-rose-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 text-rose-600 curso"
+          >
+            Se connecter
+          </a>
+        </Link>
+        <Link href="/signup">
+          <a
+            className="inline-flex items-center px-4 py-2 text-lg font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 curso"
+          >
+            S'inscrire
+          </a>
+        </Link>
       </div>
     </div>
   )
