@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react"
+import { Fragment } from "react"
 import Link from "next/link"
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
@@ -11,18 +11,20 @@ const user = {
     'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 
-const userNavigation = [
-  { name: 'Profil', href: '#' },
-  { name: 'Paramètres', href: '#' },
-  { name: 'Déconnexion', href: '#' },
-]
-
 export default function Header() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
+
+  const userNavigation = [
+    { name: 'Profil', href: '#' },
+    { name: 'Paramètres', href: '#' },
+    { name: 'Déconnexion', onClick: () => {
+      setConnectedUser(null)
+    }},
+  ]
   
   return (
     <Popover
@@ -65,58 +67,75 @@ export default function Header() {
                 </Popover.Button>
               </div>
               <div className="hidden lg:flex lg:items-center lg:justify-end">
-
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative flex-shrink-0 ml-5">
-                  {({ open }) => (
-                    <>
-                      <div>
-                        <Menu.Button className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
-                          <span className="sr-only">Open user menu</span>
-                          <img className="w-8 h-8 rounded-full" src={user.imageUrl} alt="" />
-                        </Menu.Button>
-                      </div>
-                      <Transition
-                        show={open}
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                      >
-                        <Menu.Items
-                          static
-                          className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        >
-                          {userNavigation.map((item) => (
-                            <Menu.Item key={item.name}>
-                              {({ active }) => (
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    active ? 'bg-gray-100' : '',
-                                    'block py-2 px-4 text-sm text-gray-700'
+                { (connectedUser !== null) ?
+                  <>
+                    <Menu as="div" className="relative flex-shrink-0 ml-5">
+                      {({ open }) => (
+                        <>
+                          <div>
+                            <Menu.Button className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
+                              <span className="sr-only">Open user menu</span>
+                              <img className="w-8 h-8 rounded-full" src={user.imageUrl} alt="" />
+                            </Menu.Button>
+                          </div>
+                          <Transition
+                            show={open}
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                          >
+                            <Menu.Items
+                              static
+                              className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            >
+                              {userNavigation.map((item) => (
+                                <Menu.Item key={item.name}>
+                                  {({ active }) => (
+                                    <button
+                                      href={item.href}
+                                      className={classNames(
+                                        active ? 'bg-gray-100' : '',
+                                        'block py-2 px-4 text-sm text-gray-700'
+                                      )}
+                                    >
+                                      {item.name}
+                                    </button>
                                   )}
-                                >
-                                  {item.name}
-                                </a>
-                              )}
-                            </Menu.Item>
-                          ))}
-                        </Menu.Items>
-                      </Transition>
-                    </>
-                  )}
-                </Menu>
-
-                <a
-                  href="#"
-                  className="inline-flex items-center px-4 py-2 ml-6 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
-                >
-                  Nouvelle publication
-                </a>
+                                </Menu.Item>
+                              ))}
+                            </Menu.Items>
+                          </Transition>
+                        </>
+                      )}
+                    </Menu>
+                    <a
+                      href="#"
+                      className="inline-flex items-center px-4 py-2 ml-6 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
+                    >
+                      Nouvelle publication
+                    </a>
+                  </>
+                : <>
+                  <Link href="/login">
+                    <a
+                      className="inline-flex items-center px-4 py-2 mr-2 text-sm font-medium border border-transparent rounded-md shadow-sm border-rose-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 text-rose-600 curso"
+                    >
+                      Se connecter
+                    </a>
+                  </Link>
+                  <Link href="/signup">
+                    <a
+                      className="inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 curso"
+                    >
+                      S'inscrire
+                    </a>
+                  </Link>
+                </>}
+                
               </div>
             </div>
           </div>

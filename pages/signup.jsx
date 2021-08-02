@@ -2,14 +2,19 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { CheckIcon, XIcon } from "@heroicons/react/solid"
 import { useForm } from "react-hook-form"
+import { useConnectedUserContext } from "../utils/ConnectedUserContext"
 
 export default function() {
+  const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
   
   function onSubmit(data) {
     console.log(data)
-    router.push("/feed")
+    setConnectedUser({
+      name: "john doe"
+    })
+    router.push("/")
   }
 
   const formPswd = watch("password") || ""
