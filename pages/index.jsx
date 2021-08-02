@@ -29,7 +29,7 @@ export default function Home() {
             <h1 className="sr-only">posts</h1>
             <ul className="space-y-4">
               {posts.map((post) => (
-                <Post post={post} />
+                <Post key={post.id} post={post} />
               ))}
             </ul>
           </div>
