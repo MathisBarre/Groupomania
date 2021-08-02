@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
       <title>Groupomania</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100">
       <Header />
       <Component {...pageProps} />
     </div>
