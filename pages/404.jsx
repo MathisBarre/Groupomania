@@ -3,7 +3,7 @@ import { ArrowSmRightIcon } from "@heroicons/react/solid"
 
 export default function() {
   return (
-    <div class="h-full flex flex-col justify-center items-center flex-1">
+    <div className="flex flex-col items-center justify-center flex-1 h-full">
       <h1 className="text-3xl font-bold text-rose-600">Erreur 404</h1>
       <p className="mb-6 text-gray-600">Malheureusement, cette page n'existe pas 😢</p>
       <img src="/images/crying.gif" className="rounded" />
