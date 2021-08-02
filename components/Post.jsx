@@ -26,7 +26,7 @@ export default function Post({ post }) {
             {post.title}
           </h2>
         </div>
-        <div class="relative h-64 md:h-96 mt-2">
+        <div className="relative h-64 mt-2 md:h-96">
           <Image className="object-cover rounded" layout="fill" src="/images/nyan-cat.gif" />
         </div>
       </article>
