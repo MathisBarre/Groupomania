@@ -52,7 +52,7 @@ export default function() {
               className={`block w-full mt-1 ${errors.email ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} rounded-md shadow-sm  focus:ring focus:ring-opacity-50`} 
               type="email" 
               placeholder="johndoe@mail.com"
-              {...register("email", { required: true })}
+              {...register("email", { required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" })}
             />
             { errors.email && <p className="text-red-500">L'adresse e-mail doit être renseignée !</p> }
           </div>
