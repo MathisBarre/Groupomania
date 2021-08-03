@@ -1,11 +1,30 @@
+import { useEffect, createContext, useState, useContext } from "react"
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { ConnectedUserContextProvider } from '../utils/ConnectedUserContext'
 import '../styles/globals.css'
 import Header from "../components/Header"
 
+const ConnectedUserContext = createContext(null);
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
+  const [connectedUser, setConnectedUser] = useState(null)
+
+  useEffect(() => {
+    const url = router.pathname
+
+    const offlineRoutes = ["/", "/signup", "/login"]
+
+    if (offlineRoutes.includes(url) && connectedUser !== null) {
+      console.log("connected redirection")
+      router.push("/feed")
+    } 
+    
+    else if (!offlineRoutes.includes(url) && connectedUser === null) {
+      console.log("not connected redirection")
+      router.push("/")
+    }
+  }, [router.pathname])
   
   return (
     <div>
@@ -14,13 +33,17 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <div className="flex flex-col min-h-screen bg-gray-100">
-          <ConnectedUserContextProvider>
+          <ConnectedUserContext.Provider value={{ connectedUser, setConnectedUser }}>
             {(router.pathname === "/") ? "" : <Header />}
             <Component {...pageProps} />
-          </ConnectedUserContextProvider>
+          </ConnectedUserContext.Provider>
         </div>
     </div>
   )
+}
+
+export function useConnectedUserContext() {
+  return useContext(ConnectedUserContext);
 }
 
 export default MyApp

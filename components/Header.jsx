@@ -2,7 +2,7 @@ import { Fragment } from "react"
 import Link from "next/link"
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
-import { useConnectedUserContext } from "../utils/ConnectedUserContext"
+import { useConnectedUserContext } from "../pages/_app"
 
 const user = {
   name: 'Chelsea Hagon',
