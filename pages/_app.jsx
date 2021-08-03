@@ -15,12 +15,12 @@ function MyApp({ Component, pageProps }) {
 
     const offlineRoutes = ["/", "/signup", "/login"]
 
-    if (offlineRoutes.includes(url) && connectedUser !== null) {
+    if (offlineRoutes.includes(url) && connectedUser !== null && url !== "/404") {
       console.log("connected redirection")
       router.push("/feed")
     } 
     
-    else if (!offlineRoutes.includes(url) && connectedUser === null) {
+    else if (!offlineRoutes.includes(url) && connectedUser === null && url !== "/404") {
       console.log("not connected redirection")
       router.push("/")
     }
