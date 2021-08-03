@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
 import { useConnectedUserContext } from "../pages/_app"
@@ -12,6 +13,7 @@ const user = {
 }
 
 export default function Header() {
+  const router = useRouter()
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   
   function classNames(...classes) {
@@ -19,10 +21,11 @@ export default function Header() {
   }
 
   const userNavigation = [
-    { name: 'Profil', href: '#' },
-    { name: 'Paramètres', href: '#' },
+    { name: 'Profil', href: '/profil' },
+    { name: 'Paramètres', href: '/settings' },
     { name: 'Déconnexion', onClick: () => {
       setConnectedUser(null)
+      router.push("/login")
     }},
   ]
   
@@ -92,21 +95,37 @@ export default function Header() {
                               static
                               className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
-                              {userNavigation.map((item) => (
-                                <Menu.Item key={item.name}>
-                                  {({ active }) => (
-                                    <button
-                                      href={item.href}
-                                      className={classNames(
-                                        active ? 'bg-gray-100' : '',
-                                        'block py-2 px-4 text-sm text-gray-700'
-                                      )}
-                                    >
-                                      {item.name}
-                                    </button>
-                                  )}
-                                </Menu.Item>
-                              ))}
+                              {userNavigation.map((item) => {
+                                if (item.onClick) {
+                                  return <Menu.Item key={item.name}>
+                                    {({ active }) => (
+                                      <button
+                                        className={classNames(
+                                          active ? 'bg-gray-100' : '',
+                                          'block py-2 px-4 text-sm text-gray-700 w-full text-left'
+                                        )}
+                                        onClick={item.onClick}
+                                      >
+                                        {item.name}
+                                      </button>
+                                    )}
+                                  </Menu.Item>
+                                } else {
+                                  return <Menu.Item key={item.name}>
+                                    {({ active }) => (
+                                      <a
+                                        className={classNames(
+                                          active ? 'bg-gray-100' : '',
+                                          'block py-2 px-4 text-sm text-gray-700 w-full text-left'
+                                        )}
+                                        href={item.href}
+                                      >
+                                        {item.name}
+                                      </a>
+                                    )}
+                                  </Menu.Item>
+                                }
+                              })}
                             </Menu.Items>
                           </Transition>
                         </>
@@ -159,15 +178,27 @@ export default function Header() {
                 </button>
               </div>
               <div className="max-w-3xl px-2 mx-auto mt-3 space-y-1 sm:px-4">
-                {userNavigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {userNavigation.map((item) => {
+                  if (item.onClick) {
+                    return <button
+                      key={item.name}
+                      onClick={item.onClick}
+                      className="block w-full px-3 py-2 text-base font-medium text-left text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                    >
+                      {item.name}
+                    </button>
+                  }
+
+                  else {
+                    return <a
+                      key={item.name}
+                      href={item.href}
+                      className="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                    >
+                      {item.name}
+                    </a>
+                  }
+                })}
               </div>
             </div>
           </Popover.Panel>
