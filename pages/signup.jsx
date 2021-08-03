@@ -4,7 +4,7 @@ import { CheckIcon, XIcon } from "@heroicons/react/solid"
 import { useForm } from "react-hook-form"
 import { useConnectedUserContext } from "../utils/ConnectedUserContext"
 
-export default function() {
+export default function Signup() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
