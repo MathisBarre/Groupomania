@@ -131,12 +131,13 @@ export default function Header() {
                         </>
                       )}
                     </Menu>
-                    <a
-                      href="#"
-                      className="inline-flex items-center px-4 py-2 ml-6 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
-                    >
-                      Nouvelle publication
-                    </a>
+                    <Link href="/new-publication">
+                      <a
+                        className="inline-flex items-center px-4 py-2 ml-6 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
+                      >
+                        Nouvelle publication
+                      </a>
+                    </Link>
                   </>
                 : <>
                   <Link href="/login">
