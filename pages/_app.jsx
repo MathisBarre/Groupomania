@@ -1,8 +1,8 @@
 import { useEffect, createContext, useState, useContext } from "react"
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import '../styles/globals.css'
-import Header from "../components/Header"
+import '@/styles/globals.css'
+import Header from "@/components/Header"
 
 const ConnectedUserContext = createContext(null);
 

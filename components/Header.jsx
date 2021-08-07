@@ -4,8 +4,8 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
-import { useConnectedUserContext } from "../pages/_app"
-import groupomaniaLogo from "../public/images/logos/icon-left-font.svg"
+import { useConnectedUserContext } from "@/pages/_app"
+import groupomaniaLogo from "@/public/images/logos/icon-left-font.svg"
 
 const user = {
   name: 'Chelsea Hagon',

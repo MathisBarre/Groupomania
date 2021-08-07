@@ -2,7 +2,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { CheckIcon, XIcon } from "@heroicons/react/solid"
 import { useForm } from "react-hook-form"
-import { useConnectedUserContext } from "../pages/_app"
+import { useConnectedUserContext } from "@/pages/_app"
 
 export default function Signup() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()

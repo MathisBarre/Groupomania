@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowSmRightIcon } from "@heroicons/react/solid"
-import CryingImage from "../public/images/crying.gif"
+import CryingImage from "@/public/images/crying.gif"
 
 export default function Error404() {
   return (

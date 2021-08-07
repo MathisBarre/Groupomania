@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
-import createPublication from "../api/createPublication";
+import createPublication from "@/api/createPublication";
 
 export default function NewPublication() {
   const { register, handleSubmit, formState: { errors } } = useForm();

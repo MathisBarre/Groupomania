@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
-import { useConnectedUserContext } from "../pages/_app"
+import { useConnectedUserContext } from "@/pages/_app"
 
 export default function Login() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()

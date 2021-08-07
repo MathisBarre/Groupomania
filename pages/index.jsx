@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import Logo from "../public/images/logos/icon-left-font-white.svg"
+import Logo from "@/public/images/logos/icon-left-font-white.svg"
 
 export default function Home() {
   return (
