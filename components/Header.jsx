@@ -47,7 +47,7 @@ export default function Header() {
             <div className="relative flex justify-between">
               <div className="flex">
                 <div className="flex items-center flex-shrink-0">
-                  <Link href="/">
+                  <Link href={connectedUser ? "/feed" : "/"}>
                     <a className="flex items-center">
                       <Image
                         className="block w-auto h-8"
