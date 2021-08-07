@@ -1,5 +1,5 @@
 export default async function createPublication(title, gifUrl) {
-  await fetch("http://localhost:3001/publication", {
+  await fetch("http://localhost:3001/publications", {
     method: "POST",
     body: JSON.stringify({
       title,
