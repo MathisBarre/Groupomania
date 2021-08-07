@@ -9,23 +9,6 @@ const ConnectedUserContext = createContext(null);
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [connectedUser, setConnectedUser] = useState(null)
-
-  useEffect(() => {
-    const url = router.pathname
-
-    const offlineRoutes = ["/", "/signup", "/login"]
-
-    if (offlineRoutes.includes(url) && connectedUser !== null && url !== "/404") {
-      console.log("connected redirection")
-      router.push("/feed")
-    } 
-    
-    else if (!offlineRoutes.includes(url) && connectedUser === null && url !== "/404") {
-      console.log("not connected redirection")
-      router.push("/")
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.pathname])
   
   return (
     <div>
