@@ -59,7 +59,7 @@ export default function Signup() {
               placeholder="johndoe@mail.com"
               {...register("email", { required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" })}
             />
-            { errors.email && <p className="text-red-500">L'adresse e-mail doit être renseignée !</p> }
+            { errors.email && <p className="text-red-500">L&apos;adresse e-mail doit être renseignée !</p> }
           </div>
           <div className="flex flex-col mt-4">
             <label className="text-sm">Votre mot de passe</label>
@@ -85,7 +85,7 @@ export default function Signup() {
           </div>
         </form>
       </section>
-      <Link href="/login"><a className="block px-4 py-2 m-auto mt-8 text-sm text-center text-gray-600 transition duration-75 hover:underline hover:rounded hover:text-black" href="">J'ai déjà un compte</a></Link>
+      <Link href="/login"><a className="block px-4 py-2 m-auto mt-8 text-sm text-center text-gray-600 transition duration-75 hover:underline hover:rounded hover:text-black" href="">J&apos;ai déjà un compte</a></Link>
     </main>
   )
 }

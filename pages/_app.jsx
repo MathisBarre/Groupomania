@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }) {
       console.log("not connected redirection")
       router.push("/")
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
   
   return (

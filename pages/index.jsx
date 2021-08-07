@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1">
       <div className="flex items-end justify-start flex-1 pb-4 pl-32 bg-rose-700">
-        <Image src={Logo} height="95" width="512" />
+        <Image src={Logo} height="95" width="512" alt="groupomania logo" />
       </div>
       <div className="flex justify-end px-32 py-16">
         <Link href="/login">
@@ -20,7 +20,7 @@ export default function Home() {
           <a
             className="inline-flex items-center px-4 py-2 text-lg font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 curso"
           >
-            S'inscrire
+            S&apos;inscrire
           </a>
         </Link>
       </div>

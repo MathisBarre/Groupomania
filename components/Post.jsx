@@ -7,7 +7,7 @@ export default function Post({ post }) {
         <div>
           <div className="flex space-x-3">
             <div className="flex-shrink-0">
-              <img className="w-10 h-10 rounded-full" src={post.author.imageUrl} alt="" />
+              <Image className="w-10 h-10 rounded-full" src={post.author.imageUrl} height="40" width="40" alt="" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900">
@@ -27,7 +27,7 @@ export default function Post({ post }) {
           </h2>
         </div>
         <div className="relative h-64 mt-2 md:h-96">
-          <Image className="object-cover rounded" layout="fill" src="/images/nyan-cat.gif" />
+          <Image className="object-cover rounded" layout="fill" src="/images/nyan-cat.gif" alt="" />
         </div>
       </article>
     </li>

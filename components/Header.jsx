@@ -1,9 +1,11 @@
 import { Fragment } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { useRouter } from "next/router"
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
 import { useConnectedUserContext } from "../pages/_app"
+import groupomaniaLogo from "../public/images/logos/icon-left-font.svg"
 
 const user = {
   name: 'Chelsea Hagon',
@@ -46,10 +48,10 @@ export default function Header() {
               <div className="flex">
                 <div className="flex items-center flex-shrink-0">
                   <Link href="/">
-                    <a>
-                      <img
+                    <a className="flex items-center">
+                      <Image
                         className="block w-auto h-8"
-                        src="/images/logos/icon-left-font.svg"
+                        src={groupomaniaLogo}
                         alt="Groupomania"
                       />
                     </a>
@@ -78,7 +80,7 @@ export default function Header() {
                           <div>
                             <Menu.Button className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
                               <span className="sr-only">Open user menu</span>
-                              <img className="w-8 h-8 rounded-full" src={user.imageUrl} alt="" />
+                              <Image className="w-8 h-8 rounded-full" src={user.imageUrl} alt="" height="38" width="38" />
                             </Menu.Button>
                           </div>
                           <Transition
@@ -151,7 +153,7 @@ export default function Header() {
                     <a
                       className="inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md shadow-sm bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 curso"
                     >
-                      S'inscrire
+                      S&apos;inscrire
                     </a>
                   </Link>
                 </>}
@@ -164,6 +166,7 @@ export default function Header() {
             <div className="pt-4 pb-3">
               <div className="flex items-center max-w-3xl px-4 mx-auto sm:px-6">
                 <div className="flex-shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img className="w-10 h-10 rounded-full" src={user.imageUrl} alt="" />
                 </div>
                 <div className="ml-3">
