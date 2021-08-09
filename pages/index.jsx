@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import Logo from "@/public/images/logos/icon-left-font-white.svg"
-import IndexBgImg from "@/public/images/charles-forerunner-unsplash.jpg"
+import IndexBgImg from "@/public/images/charles-forerunner-unsplash.webp"
 
 export default function Home() {
   return (
