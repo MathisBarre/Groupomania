@@ -1,12 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 import Logo from "@/public/images/logos/icon-left-font-white.svg"
+import IndexBgImg from "@/public/images/charles-forerunner-unsplash.jpg"
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1">
-      <div className="flex items-end justify-start flex-1 pb-4 pl-32 bg-rose-700">
-        <Image src={Logo} height="95" width="512" alt="groupomania logo" />
+      <div className="relative flex items-end justify-start flex-1 pb-4 pl-32 bg-rose-700">
+        <Image src={IndexBgImg} alt="" className="absolute inset-0" objectFit="cover" layout="fill" />
+        <div className="absolute inset-0 opacity-80 bg-rose-700" />
+        <Image src={Logo} className="h-12" height="95" width="512" alt="groupomania logo" />
       </div>
       <div className="flex justify-end px-32 py-16">
         <Link href="/login">
