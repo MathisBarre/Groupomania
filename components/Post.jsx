@@ -14,8 +14,8 @@ export default function Post({ post }) {
                 {post.user.display_name}
               </p>
               <p className="text-sm text-gray-500">
-                <a href={post.href} className="hover:underline">
-                  <time dateTime={post.date_creation}>{post.date_creation}</time>
+                <a href={post.href} className="">
+                  <time dateTime={post.date_creation}>{post.date_creation_fr}</time>
                 </a>
               </p>
             </div>
