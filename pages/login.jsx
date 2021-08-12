@@ -1,21 +1,25 @@
+import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { useConnectedUserContext } from "@/pages/_app"
 import connectUser from "@/api/connectUser"
+import { XCircleIcon } from '@heroicons/react/solid'
 
 export default function Login() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState(null)
   
-  async function onSubmit(data) {
-    console.log(data)
-    setConnectedUser({
-      name: "john doe"
-    })
-    connectUser()
-    router.push("/feed")
+  async function onSubmit({ email, password}) {
+    try {
+      setErrorMessage(null)
+      await connectUser({ email, password })
+      router.push("/feed")
+    } catch (error) {
+      setErrorMessage(error.message)
+    }
   }
 
   return (
@@ -50,6 +54,18 @@ export default function Login() {
             />
           </div>
         </form>
+
+        { (errorMessage) && <div className="p-4 mt-4 rounded-md bg-red-50">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <XCircleIcon className="w-5 h-5 text-red-400" aria-hidden="true" />
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-red-800">{ errorMessage }</h3>
+            </div>
+          </div>
+        </div> }
+
       </section>
       <Link href="/signup"><a className="block px-4 py-2 m-auto mt-8 text-sm text-center text-gray-600 transition duration-75 hover:underline hover:rounded hover:text-black" href="">Je n&apos;ai pas de compte</a></Link>
     </main>
