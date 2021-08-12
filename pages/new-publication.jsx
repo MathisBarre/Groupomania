@@ -2,19 +2,23 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/router"
 import createPublication from "@/api/createPublication";
+import { XCircleIcon } from '@heroicons/react/solid'
+
 
 export default function NewPublication() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const router = useRouter()
+  const [errorMessage, seterrorMessage] = useState(null)
   
   async function onSubmit(data) {
     try {
+      seterrorMessage(null)
       setPublicationIsPosting(true)
       await createPublication(data.title, data.externalGifURl)
       router.push("/feed")
     } catch(error) {
+      seterrorMessage(error.message)
       setPublicationIsPosting(false)
-      alert(error)
     }
   }
 
@@ -66,6 +70,18 @@ export default function NewPublication() {
             </button>
           </div>
         </form>
+
+        { (errorMessage) && <div className="p-4 mt-4 rounded-md bg-red-50">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <XCircleIcon className="w-5 h-5 text-red-400" aria-hidden="true" />
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-red-800">{ errorMessage }</h3>
+            </div>
+          </div>
+        </div> }
+
       </section>
     </main>
   )
