@@ -1,19 +1,27 @@
+import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { CheckIcon, XIcon } from "@heroicons/react/solid"
 import { useForm } from "react-hook-form"
 import { useConnectedUserContext } from "@/pages/_app"
+import createUser from "@/api/createUser"
+import { XCircleIcon } from '@heroicons/react/solid'
 
 export default function Signup() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState(null)
   
-  function onSubmit(data) {
-    setConnectedUser({
-      name: "john doe"
-    })
-    router.push("/feed")
+  async function onSubmit(data) {
+    try {
+      setErrorMessage(null)
+      const user = await createUser(data.email, data.displayName, data.password)
+      setConnectedUser(user)
+      router.push("/feed")
+    } catch(error) {
+      setErrorMessage(error.message)
+    }
   }
 
   const formPswd = watch("password") || ""
@@ -50,8 +58,19 @@ export default function Signup() {
       <section className="flex flex-col w-full px-4 py-6 bg-white shadow sm:p-6 sm:rounded-lg">
         <h1 className="mb-8 text-xl font-bold text-rose-600">Créer un compte</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+
           <div className="flex flex-col">
-            <label className="text-sm">Votre adresse e-mail</label>
+            <label className="text-sm">Pseudonyme</label>
+            <input 
+              className={`block w-full mt-1 ${errors.displayName ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} rounded-md shadow-sm  focus:ring focus:ring-opacity-50`} 
+              type="text" 
+              {...register("displayName", { required: true })}
+            />
+            { errors.displayName && <p className="text-red-500">Le pseudonyme doit être renseigné !</p> }
+          </div>
+
+          <div className="flex flex-col mt-4">
+            <label className="text-sm">Adresse e-mail</label>
             <input 
               className={`block w-full mt-1 ${errors.email ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} rounded-md shadow-sm  focus:ring focus:ring-opacity-50`} 
               type="email" 
@@ -60,8 +79,9 @@ export default function Signup() {
             />
             { errors.email && <p className="text-red-500">L&apos;adresse e-mail doit être renseignée !</p> }
           </div>
+
           <div className="flex flex-col mt-4">
-            <label className="text-sm">Votre mot de passe</label>
+            <label className="text-sm">Mot de passe</label>
             <input 
               className={`${errors.password ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} block w-full mt-1 rounded-md shadow-sm focus:ring focus:ring-opacity-50`}
               type="password" 
@@ -75,6 +95,7 @@ export default function Signup() {
               <Badge conditionIsFulfilled={lengthCondition} text="contient au moins 11 caractères" />
             </ul>
           </div>
+
           <div className="flex items-center mt-4">
             <input 
               className="w-full px-4 py-2 font-medium text-white transition duration-75 border border-transparent rounded-md shadow-sm cursor-pointer bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" 
@@ -82,7 +103,20 @@ export default function Signup() {
               value="Créer le compte" 
             />
           </div>
+
         </form>
+
+        { (errorMessage) && <div className="p-4 mt-4 rounded-md bg-red-50">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <XCircleIcon className="w-5 h-5 text-red-400" aria-hidden="true" />
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-red-800">{ errorMessage }</h3>
+            </div>
+          </div>
+        </div> }
+
       </section>
       <Link href="/login"><a className="block px-4 py-2 m-auto mt-8 text-sm text-center text-gray-600 transition duration-75 hover:underline hover:rounded hover:text-black" href="">J&apos;ai déjà un compte</a></Link>
     </main>
