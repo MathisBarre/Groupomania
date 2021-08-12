@@ -29,7 +29,7 @@ export default function Login() {
         <h1 className="mb-8 text-xl font-bold text-rose-600">Se connecter</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <div className="flex flex-col">
-            <label className="text-sm">Votre adresse e-mail</label>
+            <label className="text-sm">Adresse e-mail</label>
             <input 
               className={`block w-full mt-1 ${errors.email ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} rounded-md shadow-sm  focus:ring focus:ring-opacity-50`} 
               type="email" 
@@ -39,7 +39,7 @@ export default function Login() {
             { errors.email && <p className="text-red-500">L&apos;adresse e-mail doit être renseignée !</p> }
           </div>
           <div className="flex flex-col mt-4">
-            <label className="text-sm">Votre mot de passe</label>
+            <label className="text-sm">Mot de passe</label>
             <input 
               className={`${errors.password ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} block w-full mt-1 rounded-md shadow-sm focus:ring focus:ring-opacity-50`}
               type="password" 
