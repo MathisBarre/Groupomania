@@ -90,7 +90,7 @@ export default function Header() {
                           <div>
                             <Menu.Button className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
                               <span className="sr-only">Open user menu</span>
-                              <Image className="w-8 h-8 rounded-full" src={connectedUser.profileImageUrl || defaultProfileImage} alt="" height="38" width="38" />
+                              <Image className="w-8 h-8 rounded-full" src={connectedUser?.profileImageUrl || defaultProfileImage} alt="" height="38" width="38" />
                             </Menu.Button>
                           </div>
                           <Transition

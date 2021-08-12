@@ -4,5 +4,8 @@ export default async function disconnectUser() {
     credentials: "include"
   })
 
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText} (${response.type})`)
+  if (!response.ok) {
+    const errorDetails = await response.json()
+    throw new Error(`${response.status} ${response.statusText} (${response.type}) : ${errorDetails.message}`);
+  }
 }
