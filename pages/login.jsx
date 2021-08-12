@@ -2,20 +2,22 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { useConnectedUserContext } from "@/pages/_app"
+import connectUser from "@/api/connectUser"
 
 export default function Login() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
   
-  function onSubmit(data) {
+  async function onSubmit(data) {
     console.log(data)
     setConnectedUser({
       name: "john doe"
     })
+    connectUser()
     router.push("/feed")
   }
-  
+
   return (
     <main className="flex flex-col w-full max-w-3xl py-10 mx-auto sm:px-6">
       <section className="flex flex-col w-full px-4 py-6 bg-white shadow sm:p-6 sm:rounded-lg">
