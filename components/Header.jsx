@@ -60,7 +60,7 @@ export default function Header() {
               </div>
               <div className="flex-1 min-w-0 md:px-8 lg:px-0">
               </div>
-              <div className="flex items-center lg:hidden">
+              <div className="flex items-center sm:hidden">
                 {/* Mobile menu button */}
                 <Popover.Button className="inline-flex items-center justify-center p-2 -mx-2 text-gray-400 rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-rose-500">
                   <span className="sr-only">Open menu</span>
@@ -71,7 +71,7 @@ export default function Header() {
                   )}
                 </Popover.Button>
               </div>
-              <div className="hidden lg:flex lg:items-center lg:justify-end">
+              <div className="hidden sm:flex sm:items-center sm:justify-end">
                 { (connectedUser !== null) ?
                   <>
                     <Menu as="div" className="relative flex-shrink-0 ml-5">
@@ -162,7 +162,7 @@ export default function Header() {
             </div>
           </div>
 
-          <Popover.Panel as="nav" className="lg:hidden" aria-label="Global">
+          <Popover.Panel as="nav" className="sm:hidden" aria-label="Global">
             <div className="pt-4 pb-3">
               <div className="flex items-center max-w-3xl px-4 mx-auto sm:px-6">
                 <div className="flex-shrink-0">
