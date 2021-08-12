@@ -1,4 +1,5 @@
 import Image from "next/image"
+import defaultProfileImage from "@/public/images/default-profil-image.svg"
 
 export default function Post({ post }) {
   return (
@@ -7,7 +8,7 @@ export default function Post({ post }) {
         <div>
           <div className="flex space-x-3">
             <div className="flex-shrink-0">
-              <Image className="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" height="40" width="40" alt="" />
+              <Image className="w-10 h-10 rounded-full" src={post.userprofileImageUrl || defaultProfileImage} height="40" width="40" alt="" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900">
