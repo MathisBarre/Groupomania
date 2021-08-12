@@ -9,7 +9,6 @@ export default function NewPublication() {
   
   async function onSubmit(data) {
     try {
-      console.log(data)
       setPublicationIsPosting(true)
       await createPublication(data.title, data.externalGifURl)
       router.push("/feed")

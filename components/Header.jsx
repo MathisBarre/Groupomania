@@ -6,6 +6,9 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Popover, Menu, Transition } from '@headlessui/react'
 import { useConnectedUserContext } from "@/pages/_app"
 import groupomaniaLogo from "@/public/images/logos/icon-left-font.svg"
+import { useCookies } from "react-cookie"
+import defaultProfileImage from "@/public/images/default-profil-image.svg"
+import disconnectUser from "@/api/disconnectUser"
 
 const user = {
   name: 'Chelsea Hagon',
@@ -16,6 +19,7 @@ const user = {
 
 export default function Header() {
   const router = useRouter()
+  const [ cookies, setCookie, removeCookie ] = useCookies(["connectedUser"])
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   
   function classNames(...classes) {
@@ -26,8 +30,14 @@ export default function Header() {
     { name: 'Profil', href: '/profil' },
     { name: 'Paramètres', href: '/settings' },
     { name: 'Déconnexion', onClick: () => {
-      setConnectedUser(null)
-      router.push("/login")
+      try {
+        disconnectUser()
+        removeCookie("connectedUser")
+        setConnectedUser(null)
+        router.push("/login")
+      } catch {
+        alert("error during logout")
+      }
     }},
   ]
   
@@ -80,7 +90,7 @@ export default function Header() {
                           <div>
                             <Menu.Button className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
                               <span className="sr-only">Open user menu</span>
-                              <Image className="w-8 h-8 rounded-full" src={user.imageUrl} alt="" height="38" width="38" />
+                              <Image className="w-8 h-8 rounded-full" src={connectedUser.profileImageUrl || defaultProfileImage} alt="" height="38" width="38" />
                             </Menu.Button>
                           </div>
                           <Transition

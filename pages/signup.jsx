@@ -10,7 +10,6 @@ export default function Signup() {
   const router = useRouter()
   
   function onSubmit(data) {
-    console.log(data)
     setConnectedUser({
       name: "john doe"
     })

@@ -15,7 +15,8 @@ export default function Login() {
   async function onSubmit({ email, password}) {
     try {
       setErrorMessage(null)
-      await connectUser({ email, password })
+      const user = await connectUser({ email, password })
+      setConnectedUser(user)
       router.push("/feed")
     } catch (error) {
       setErrorMessage(error.message)

@@ -4,8 +4,6 @@ import Post from "@/components/Post"
 
 export default function Feed() {
   const { data, error } = useSWR("http://localhost:3001/publications", fetcher)
-
-  console.log(data)
   if (data) {
     return (
       <div className="py-10">

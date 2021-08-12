@@ -7,7 +7,11 @@ export default async function connectUser(payload) {
       'Content-type': 'application/json'
     }
   })
-  const errorDetails = await response.json()
-  console.log(errorDetails)
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText} (${response.type}) : ${errorDetails.message}`);
+
+  if (!response.ok) {
+    const errorDetails = await response.json()
+    throw new Error(`${response.status} ${response.statusText} (${response.type}) : ${errorDetails.message}`);
+  }
+
+  return await response.json()
 }
