@@ -1,13 +1,6 @@
-
-const people = [
-  { name: 'Jane Cooper', title: 'Regional Paradigm Technician', role: 'Admin', email: 'jane.cooper@example.com' },
-  { name: 'Cody Fisher', title: 'Product Directives Officer', role: 'Owner', email: 'cody.fisher@example.com' },
-  // More people...
-]
-
 const tableTitles = [ "ID", "Pseudonyme", "E-mail", "Rôle", "Date création" ]
 
-export default function Table() {
+export default function Table({ people }) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -17,9 +10,9 @@ export default function Table() {
               <thead className="bg-gray-50">
                 <tr>
                   { tableTitles.map((title, index) => <TableHeadCell key={`${title}-${index}`} text={title} /> ) }
-                  <th scope="col" className="relative px-6 py-3">
+                  {/* <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Edit</span>
-                  </th>
+                  </th> */}
                 </tr>
               </thead>
               <tbody>
@@ -47,15 +40,16 @@ function TableHeadCell({ text }) {
 function TableRow({ person, index }) {
   return (
     <tr className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.name}</td>
-      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.title}</td>
+      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.id}</td>
+      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.display_name}</td>
       <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.email}</td>
       <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.role}</td>
-      <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.date_creation_fr}</td>
+      {/* <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
         <a href="#" className="text-indigo-600 hover:text-indigo-900">
           Edit
         </a>
-      </td>
+      </td> */}
     </tr>
   )
 }

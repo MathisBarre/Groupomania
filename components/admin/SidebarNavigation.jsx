@@ -1,7 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
+import Image from "next/image"
 import { Dialog, Transition } from '@headlessui/react'
 import { UsersIcon, XIcon, MenuIcon } from '@heroicons/react/outline'
+import Logo from "@/public/images/logos/icon-left-font.svg"
 
 const navigation = [
   { name: 'Utilisateur', href: '/admin/users', icon: UsersIcon, current: true },
@@ -29,11 +31,7 @@ function DesktopSidebar() {
     <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
       <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
         <div className="flex items-center flex-shrink-0 px-4">
-          <img
-            className="w-auto h-8"
-            src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-            alt="Workflow"
-          />
+        <Image src={Logo} className="h-12" height="36" width="219" alt="groupomania" />
         </div>
         <nav className="flex-1 px-2 mt-5 space-y-1 bg-white">
           {navigation.map((item) => (

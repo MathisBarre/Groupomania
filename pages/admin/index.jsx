@@ -2,8 +2,12 @@
 import { useState } from 'react'
 import Table from "@/components/admin/Table"
 import SidebarNavigation, { ToggleSidebarBtn } from "@/components/admin/SidebarNavigation"
+import useSWR from "swr"
+import fetcher from '@/api/fetcher'
 
 export default function Admin() {
+  const { data, error } = useSWR("http://localhost:3001/users", fetcher)
+  console.log(data)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -17,7 +21,7 @@ export default function Admin() {
               <h1 className="text-2xl font-semibold text-gray-900">Utilisateurs</h1>
             </div>
             <div className="px-4 mx-auto mt-8 max-w-7xl sm:px-6 md:px-8">
-              <Table />
+              { data ? <Table people={data} /> : "" }
             </div>
           </div>
         </main>

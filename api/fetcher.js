@@ -1,7 +1,13 @@
 export default async function fetcher(url) {
-  const httpBodyResponse = await fetch(url, {
+  const response = await fetch(url, {
     credentials: "include"
   })
-  const json = await httpBodyResponse.json() 
+
+  if (!response.ok) {
+    const errorDetails = await response.json()
+    throw new Error(`${response.status} ${response.statusText} (${response.type}) : ${errorDetails.message}`);
+  }
+
+  const json = await response.json() 
   return json
 }
