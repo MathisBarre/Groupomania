@@ -9,7 +9,7 @@ export default function Home() {
       <div className="relative flex items-end justify-start flex-1 pb-4 pl-32 bg-rose-700">
         <Image src={IndexBgImg} alt="" className="absolute inset-0" objectFit="cover" layout="fill" />
         <div className="absolute inset-0 opacity-80 bg-rose-700" />
-        <Image src={Logo} className="h-12" height="95" width="512" alt="groupomania logo" />
+        <Image src={Logo} className="h-12" height="95" width="512" alt="groupomania" />
       </div>
       <div className="flex justify-end px-32 py-16">
         <Link href="/login">
