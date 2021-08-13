@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
         <div className="flex flex-col min-h-screen bg-gray-100">
             <ConnectedUserContext.Provider value={{ connectedUser, setConnectedUser }}>
-              {(router.pathname === "/") ? "" : <Header />}
+              {(router.pathname === "/" || router.pathname === "/admin") ? "" : <Header />}
                 <Component {...pageProps} />
             </ConnectedUserContext.Provider>
         </div>
