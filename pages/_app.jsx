@@ -10,7 +10,8 @@ const ConnectedUserContext = createContext(null);
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [ cookies ] = useCookies(["connectedUser"])
-  const [connectedUser, setConnectedUser] = useState(cookies.connectedUser)
+
+  const [connectedUser, setConnectedUser] = useState((!cookies[0]) ? null : cookies.connectedUser)
   
   return (
     <div>
@@ -19,10 +20,10 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <div className="flex flex-col min-h-screen bg-gray-100">
-            <ConnectedUserContext.Provider value={{ connectedUser, setConnectedUser }}>
-              {(router.pathname === "/" || router.pathname === "/admin") ? "" : <Header />}
-                <Component {...pageProps} />
-            </ConnectedUserContext.Provider>
+          <ConnectedUserContext.Provider value={{ connectedUser, setConnectedUser }}>
+            {(router.pathname === "/" || router.pathname === "/admin") ? "" : <Header />}
+              <Component {...pageProps} />
+          </ConnectedUserContext.Provider>
         </div>
     </div>
   )
