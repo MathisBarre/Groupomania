@@ -62,7 +62,7 @@ export default function Signup() {
           <div className="flex flex-col">
             <label className="text-sm">Pseudonyme</label>
             <input 
-              className={`block w-full mt-1 ${errors.displayName ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} rounded-md shadow-sm  focus:ring focus:ring-opacity-50`} 
+              className={`${errors.displayName ? "invalid-input" : "valid-input"} input block w-full mt-1`} 
               type="text" 
               {...register("displayName", { required: true })}
             />
@@ -72,7 +72,7 @@ export default function Signup() {
           <div className="flex flex-col mt-4">
             <label className="text-sm">Adresse e-mail</label>
             <input 
-              className={`block w-full mt-1 ${errors.email ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} rounded-md shadow-sm  focus:ring focus:ring-opacity-50`} 
+              className={`${errors.email ? "invalid-input" : "valid-input"} input block w-full mt-1`} 
               type="email" 
               placeholder="johndoe@mail.com"
               {...register("email", { required: true, pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" })}
@@ -83,8 +83,8 @@ export default function Signup() {
           <div className="flex flex-col mt-4">
             <label className="text-sm">Mot de passe</label>
             <input 
-              className={`${errors.password ? "border-red-300 focus:border-red-400 placeholder-red-500 focus:ring-red-200" : "border-gray-300 focus:border-indigo-300 focus:ring-indigo-200"} block w-full mt-1 rounded-md shadow-sm focus:ring focus:ring-opacity-50`}
-              type="password" 
+              className={`${errors.password ? "invalid-input" : "valid-input"} input block w-full mt-1`}
+              type="password"
               {...register("password", { required: true, validate: inputValue => passwordValidation(inputValue) })}
             />
             { errors.password && <p className="text-red-500">Les conditions ci-dessous doivent être respectée !</p> }
