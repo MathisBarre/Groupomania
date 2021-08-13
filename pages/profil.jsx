@@ -27,7 +27,7 @@ export default function Profil() {
           <div className="flex flex-col">
             <label className="text-sm">Pseudonyme</label>
             <input 
-              defaultValue={connectedUser.displayName}
+              defaultValue={connectedUser?.displayName || ""}
               className={`block w-full mt-1 ${errors.displayName ? "invalid-input" : "valid-input"} input`} 
               type="text" 
               {...register("displayName", { required: true })}
@@ -38,7 +38,7 @@ export default function Profil() {
           <div className="flex flex-col mt-4">
             <label className="text-sm">Adresse e-mail</label>
             <input 
-              defaultValue={connectedUser.email}
+              defaultValue={connectedUser?.email || ""}
               className={`block w-full mt-1 ${errors.email ? "invalid-input" : "valid-input"} input`} 
               type="email" 
               placeholder="johndoe@mail.com"
@@ -50,7 +50,7 @@ export default function Profil() {
           <div className="flex flex-col mt-4">
             <label className="text-sm">URL de l&apos;image de profil</label>
             <input 
-              defaultValue={connectedUser.profileImageUrl || ""}
+              defaultValue={connectedUser?.profileImageUrl || ""}
               className={`block w-full mt-1 ${errors.profileImage ? "invalid-input" : "valid-input"} input`} 
               type="text" 
               {...register("profileImage", { required: true })}
