@@ -28,7 +28,6 @@ export default function Header() {
 
   const userNavigation = [
     { name: 'Profil', href: '/profil' },
-    { name: 'Paramètres', href: '/settings' },
     { name: 'Déconnexion', onClick: () => {
       try {
         disconnectUser()
@@ -125,15 +124,16 @@ export default function Header() {
                                 } else {
                                   return <Menu.Item key={item.name}>
                                     {({ active }) => (
-                                      <a
-                                        className={classNames(
-                                          active ? 'bg-gray-100' : '',
-                                          'block py-2 px-4 text-sm text-gray-700 w-full text-left'
-                                        )}
-                                        href={item.href}
-                                      >
-                                        {item.name}
-                                      </a>
+                                      <Link href={item.href} >
+                                        <a
+                                          className={classNames(
+                                            active ? 'bg-gray-100' : '',
+                                            'block py-2 px-4 text-sm text-gray-700 w-full text-left'
+                                          )}
+                                        >
+                                          {item.name}
+                                        </a>
+                                      </Link>
                                     )}
                                   </Menu.Item>
                                 }
@@ -204,13 +204,15 @@ export default function Header() {
                   }
 
                   else {
-                    return <a
-                      key={item.name}
-                      href={item.href}
-                      className="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
-                    >
-                      {item.name}
-                    </a>
+                    return <Link href={item.href}>
+                      <a
+                        key={item.name}
+                        
+                        className="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                      >
+                        {item.name}
+                      </a>
+                    </Link>
                   }
                 })}
               </div>
