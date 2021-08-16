@@ -16,7 +16,6 @@ export default function Feed() {
       <>
         <MyDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} comments={currentComments} />
         <div className="w-full py-10">
-          <button onClick={() => { setCurrentPostId(7) }}>YOLO</button>
           <div className="max-w-3xl mx-auto sm:px-6">
             <main>
               <h1 className="sr-only">posts</h1>

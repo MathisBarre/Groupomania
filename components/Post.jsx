@@ -35,7 +35,7 @@ export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
               onClick={() => {setIsDialogOpen(true); setCurrentPostId(post.id)}}  
             >
               <ChatAltIcon className="w-5 h-5" aria-hidden="true" />
-              <span className="font-medium">15 commentaires</span>
+              <span className="font-medium">{ post._count.comment } commentaires</span>
             </button>
           </div>
         </article>
