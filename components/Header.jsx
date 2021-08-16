@@ -204,7 +204,7 @@ export default function Header() {
                   }
 
                   else {
-                    return <Link href={item.href}>
+                    return <Link key={item.name} href={item.href}>
                       <a
                         key={item.name}
                         
