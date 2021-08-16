@@ -11,10 +11,6 @@ export default function MyDialog({ isOpen, setIsOpen, comments }) {
     setIsOpen(true)
   }
 
-  useEffect(() => {
-    console.log("mounted dialog")
-  }, [])
-
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>

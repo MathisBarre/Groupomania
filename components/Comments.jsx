@@ -2,20 +2,27 @@ import Image from "next/image"
 import defaultProfileImage from "@/public/images/default-profil-image.svg"
 
 export default function Comments({ comments }) {
-  console.log(comments)
 
-  return (
-    <div className="space-y-4">
-      { comments.map((comment) => (
-        <Comment
-          key={comment.key} 
-          displayName={comment.user.display_name} 
-          content={comment.content} 
-          image={comment.user.profile_image_url}
-        />
-      ))}
-    </div>
-  )
+  if (comments && comments[0]) {
+    console.log("comments !!!")
+    console.log(comments)
+    return (
+      <div className="space-y-4">
+        { comments.map((comment) => (
+          <Comment
+            key={comment.id} 
+            displayName={comment.user.display_name} 
+            content={comment.content} 
+            image={comment.user.profile_image_url}
+          />
+        ))}
+      </div>
+    )
+  } else {
+    return (
+      <p>no comments</p>
+    )
+  }
 }
 
 function Comment({ displayName, content, image }) {

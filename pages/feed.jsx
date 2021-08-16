@@ -6,39 +6,17 @@ import WarningAlert from "@/components/warning-alert"
 import MyDialog from "@/components/Dialog"
 
 export default function Feed() {
+  const [currentPostId, setCurrentPostId] = useState(14)
   const { data, error } = useSWR("http://localhost:3001/publications", fetcher)
+  const { data: currentComments, error: commentsError } = useSWR(`http://localhost:3001/comment/${currentPostId}`, fetcher)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-
-  const currentComments = [
-    {
-      "id": 2,
-      "content": "C'est incroyable !",
-      "publication_id": 14,
-      "author_id": 2,
-      "user": {
-        "display_name": "mathisbarre",
-        "profile_image_url": null
-      },
-      "date_creation_fr": "16 août 2021 à 20:37"
-    },
-    {
-      "id": 1,
-      "content": "J'adore",
-      "publication_id": 14,
-      "author_id": 2,
-      "user": {
-        "display_name": "mathisbarre",
-        "profile_image_url": null
-      },
-      "date_creation_fr": "16 août 2021 à 20:37"
-    }
-  ]
 
   if (data) {
     return (
       <>
         <MyDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} comments={currentComments} />
         <div className="w-full py-10">
+          <button onClick={() => { setCurrentPostId(7) }}>YOLO</button>
           <div className="max-w-3xl mx-auto sm:px-6">
             <main>
               <h1 className="sr-only">posts</h1>
@@ -48,6 +26,7 @@ export default function Feed() {
                     key={post.id} 
                     post={post} 
                     setIsDialogOpen={setIsDialogOpen} 
+                    setCurrentPostId={setCurrentPostId}
                   />
                 ))}
               </ul>

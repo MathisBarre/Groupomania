@@ -12,8 +12,6 @@ export default function Profil() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const [errorMessage, setErrorMessage] = useState(null)
 
-  console.log(connectedUser)
-
   function onSubmit() {
     alert("submit")
   }

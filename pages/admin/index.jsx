@@ -7,7 +7,6 @@ import fetcher from '@/api/fetcher'
 
 export default function Admin() {
   const { data, error } = useSWR("http://localhost:3001/users", fetcher)
-  console.log(data)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (

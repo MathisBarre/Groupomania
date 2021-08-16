@@ -1,14 +1,8 @@
-import { useState, useEffect } from "react"
 import Image from "next/image"
 import defaultProfileImage from "@/public/images/default-profil-image.svg"
 import { ChatAltIcon } from "@heroicons/react/solid"
-import useSWR from "swr"
-import fetcher from "@/api/fetcher"
 
-export default function Post({ post, setIsDialogOpen }) {
-  // const { data, error } = useSWR(`http://localhost:3001/comment/${post.id}`, fetcher)
-  // console.log(data)
-
+export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
   return (
     <>
       <li key={post.id} className="px-4 py-6 bg-white shadow sm:p-6 sm:rounded-lg">
@@ -38,7 +32,7 @@ export default function Post({ post, setIsDialogOpen }) {
           <div className="flex justify-between mt-6 space-x-8">
             <button 
               className="flex items-center px-2 py-1 space-x-2 text-gray-500 border border-gray-200 rounded hover:border-gray-300 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
-              onClick={() => {setIsDialogOpen(true)}}  
+              onClick={() => {setIsDialogOpen(true); setCurrentPostId(post.id)}}  
             >
               <ChatAltIcon className="w-5 h-5" aria-hidden="true" />
               <span className="font-medium">15 commentaires</span>
