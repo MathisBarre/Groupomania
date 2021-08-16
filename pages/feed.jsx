@@ -14,7 +14,7 @@ export default function Feed() {
   if (data) {
     return (
       <>
-        <MyDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} comments={currentComments} />
+        <MyDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} comments={currentComments} currentPostId={currentPostId} />
         <div className="w-full py-10">
           <div className="max-w-3xl mx-auto sm:px-6">
             <main>

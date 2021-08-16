@@ -1,8 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState, useEffect } from 'react'
 import Comments from '@/components/Comments'
+import AddPublication from "@/components/AddPublication"
 
-export default function MyDialog({ isOpen, setIsOpen, comments }) {
+export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId }) {
   function closeModal() {
     setIsOpen(false)
   }
@@ -57,6 +58,7 @@ export default function MyDialog({ isOpen, setIsOpen, comments }) {
                     Commentaires
                   </Dialog.Title>
                   <Comments comments={comments} />
+                  <AddPublication currentPostId={currentPostId} />
                   <div className="mt-4">
                     <button
                       type="button"
