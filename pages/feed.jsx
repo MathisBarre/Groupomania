@@ -1,24 +1,60 @@
+import { useState } from "react"
 import useSWR from "swr"
 import fetcher from "@/api/fetcher"
 import Post from "@/components/Post"
 import WarningAlert from "@/components/warning-alert"
+import MyDialog from "@/components/Dialog"
 
 export default function Feed() {
   const { data, error } = useSWR("http://localhost:3001/publications", fetcher)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  const currentComments = [
+    {
+      "id": 2,
+      "content": "C'est incroyable !",
+      "publication_id": 14,
+      "author_id": 2,
+      "user": {
+        "display_name": "mathisbarre",
+        "profile_image_url": null
+      },
+      "date_creation_fr": "16 août 2021 à 20:37"
+    },
+    {
+      "id": 1,
+      "content": "J'adore",
+      "publication_id": 14,
+      "author_id": 2,
+      "user": {
+        "display_name": "mathisbarre",
+        "profile_image_url": null
+      },
+      "date_creation_fr": "16 août 2021 à 20:37"
+    }
+  ]
+
   if (data) {
     return (
-      <div className="w-full py-10">
-        <div className="max-w-3xl mx-auto sm:px-6">
-          <main>
-            <h1 className="sr-only">posts</h1>
-            <ul className="space-y-4">
-              {data.map((post) => (
-                <Post key={post.id} post={post} />
-              ))}
-            </ul>
-          </main>
+      <>
+        <MyDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} comments={currentComments} />
+        <div className="w-full py-10">
+          <div className="max-w-3xl mx-auto sm:px-6">
+            <main>
+              <h1 className="sr-only">posts</h1>
+              <ul className="space-y-4">
+                {data.map((post) => (
+                  <Post 
+                    key={post.id} 
+                    post={post} 
+                    setIsDialogOpen={setIsDialogOpen} 
+                  />
+                ))}
+              </ul>
+            </main>
+          </div>
         </div>
-      </div>
+      </>
     )
   } else if (error) {
     return (
