@@ -5,7 +5,6 @@ import createPublication from "@/api/createPublication";
 import { XCircleIcon } from '@heroicons/react/solid'
 import FormButton from "@/components/FormButton";
 
-
 export default function NewPublication() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const router = useRouter()

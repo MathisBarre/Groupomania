@@ -1,7 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState, useEffect } from 'react'
 import Comments from '@/components/Comments'
-import AddPublication from "@/components/AddPublication"
+import AddPublication from "@/components/NewComment"
+import { XIcon } from "@heroicons/react/solid"
 
 export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId }) {
   function closeModal() {
@@ -20,7 +21,7 @@ export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId })
           className="fixed inset-0 z-10 overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="min-h-screen px-4 text-center">
+          <div className="min-h-screen text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -59,15 +60,13 @@ export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId })
                   </Dialog.Title>
                   <Comments comments={comments} />
                   <AddPublication currentPostId={currentPostId} />
-                  <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-rose-500"
+                      className="absolute flex items-center justify-center w-8 h-8 bg-gray-200 rounded right-8 top-12"
                       onClick={closeModal}
                     >
-                      Fermer
+                      <XIcon className="w-4 h-4" />
                     </button>
-                  </div>
                 </div>
               </div>
             </Transition.Child>

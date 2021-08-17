@@ -1,4 +1,6 @@
 export default function FormButton({loading, text}) {
+  if (!loading) loading = false
+
   return (
     <button 
       className="flex justify-center w-full px-4 py-2 font-medium text-white transition duration-75 border border-transparent rounded-md shadow-sm cursor-pointer bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" 
