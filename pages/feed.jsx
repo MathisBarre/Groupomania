@@ -2,7 +2,7 @@ import { useState } from "react"
 import useSWR from "swr"
 import fetcher from "@/api/fetcher"
 import Post from "@/components/Post"
-import WarningAlert from "@/components/warning-alert"
+import WarningAlert from "@/components/WarningAlert"
 import MyDialog from "@/components/Dialog"
 
 export default function Feed() {
