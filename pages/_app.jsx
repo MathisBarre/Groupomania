@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [ cookies ] = useCookies(["connectedUser"])
 
-  const [connectedUser, setConnectedUser] = useState((!cookies[0]) ? null : cookies.connectedUser)
+  const [connectedUser, setConnectedUser] = useState((!cookies.connectedUser) ? null : cookies.connectedUser)
   
   return (
     <div>
