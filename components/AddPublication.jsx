@@ -18,10 +18,14 @@ export default function AddPublication({ currentPostId }) {
   console.log(errors);
   
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="comment" {...register("comment", {})} />
-
-      <input type="submit" />
+    <form className="flex mt-4" onSubmit={handleSubmit(onSubmit)}>
+      <input
+        type="text" 
+        placeholder="comment" 
+        {...register("comment", {})}
+        className="flex-1 mr-4 input valid-input"
+      />
+      <input className="" type="submit" />
     </form>
   );
 }
