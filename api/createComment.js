@@ -1,5 +1,5 @@
 export default async function createUser(publicationId, comment) {
-  const response = await fetch("http://localhost:3001/comment", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comment`, {
     method: "POST",
     credentials: "include",
     body: JSON.stringify({

@@ -1,5 +1,5 @@
 export default async function disconnectUser() {
-  const response = await fetch("http://localhost:3001/auth/logout", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/auth/logout`, {
     method: "POST",
     credentials: "include"
   })

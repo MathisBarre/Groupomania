@@ -1,5 +1,5 @@
 export default async function createPublication(title, gifUrl) {
-  const response = await fetch("http://localhost:3001/publications", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/publications`, {
     method: "POST",
     credentials: "include",
     body: JSON.stringify({

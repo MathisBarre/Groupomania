@@ -6,7 +6,7 @@ import useSWR from "swr"
 import fetcher from '@/api/fetcher'
 
 export default function Admin() {
-  const { data, error } = useSWR("http://localhost:3001/users", fetcher)
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/users`, fetcher)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (

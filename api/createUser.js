@@ -1,5 +1,5 @@
 export default async function createUser(email, displayName, password) {
-  const response = await fetch("http://localhost:3001/users", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/users`, {
     method: "POST",
     credentials: "include",
     body: JSON.stringify({

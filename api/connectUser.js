@@ -1,5 +1,5 @@
 export default async function connectUser(payload) {
-  const response = await fetch("http://localhost:3001/auth/login", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/auth/login`, {
     method: "POST",
     credentials: "include",
     body: JSON.stringify(payload),

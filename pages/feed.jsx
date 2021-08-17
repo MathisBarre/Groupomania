@@ -7,8 +7,8 @@ import MyDialog from "@/components/Dialog"
 
 export default function Feed() {
   const [currentPostId, setCurrentPostId] = useState(14)
-  const { data, error } = useSWR("http://localhost:3001/publications", fetcher)
-  const { data: currentComments, error: commentsError } = useSWR(`http://localhost:3001/comment/${currentPostId}`, fetcher)
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/publications`, fetcher)
+  const { data: currentComments, error: commentsError } = useSWR(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comment/${currentPostId}`, fetcher)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   if (data) {
