@@ -8,7 +8,7 @@ export default function WarningAlert({ title, text}) {
           <ExclamationIcon className="w-5 h-5 text-yellow-400" aria-hidden="true" />
         </div>
         <div className="ml-3">
-          <h3 className="text-sm font-medium text-yellow-800">{ title }</h3>
+          <h3 className="text-sm font-semibold text-yellow-800">{ title }</h3>
           <div className="mt-2 text-sm text-yellow-700">
             <p>
               { text }

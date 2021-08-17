@@ -36,7 +36,7 @@ export default function Feed() {
     )
   } else if (error) {
     return (
-      <main className="w-full max-w-3xl m-auto mt-8">
+      <main className="w-full max-w-3xl px-6 m-auto mt-8">
         <WarningAlert
           title="Le flux n'a pas pu être chargé"
           text="Un problème est survenu durant le chargement de la page. Veuillez recharger la page."
