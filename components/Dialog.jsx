@@ -1,10 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState, useEffect } from 'react'
 import Comments from '@/components/Comments'
-import AddPublication from "@/components/NewComment"
+import NewComment from "@/components/NewComment"
 import { XIcon } from "@heroicons/react/solid"
 
-export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId }) {
+export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId, commentsEndpoint }) {
   function closeModal() {
     setIsOpen(false)
   }
@@ -59,10 +59,10 @@ export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId })
                     Commentaires
                   </Dialog.Title>
                   <Comments comments={comments} />
-                  <AddPublication currentPostId={currentPostId} />
+                  <NewComment currentPostId={currentPostId} commentsEndpoint={commentsEndpoint} />
                     <button
                       type="button"
-                      className="absolute flex items-center justify-center w-8 h-8 bg-gray-200 rounded right-8 top-12"
+                      className="absolute flex items-center justify-center w-8 h-8 bg-gray-200 rounded right-10 top-14"
                       onClick={closeModal}
                     >
                       <XIcon className="w-4 h-4" />

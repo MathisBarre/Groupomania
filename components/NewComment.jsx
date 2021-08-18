@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import createComment from "@/api/createComment"
 import FormButton from './FormButton';
+import { mutate } from 'swr';
 
-export default function AddPublication({ currentPostId }) {
+export default function NewComment({ currentPostId, commentsEndpoint }) {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [isCommentPosting, setIsCommentPosting] = useState(false)
 
   async function onSubmit(data) {
-    console.log(data.comment)
-    console.log(currentPostId)
-
     try {
       setIsCommentPosting(true)
       await createComment(currentPostId, data.comment)
+      mutate(commentsEndpoint)
       setIsCommentPosting(false)
       reset()
     } catch(error) {

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import useSWR from "swr"
+import useSWR, { mutate } from "swr"
 import fetcher from "@/api/fetcher"
 import Post from "@/components/Post"
 import WarningAlert from "@/components/WarningAlert"
@@ -8,13 +8,20 @@ import MyDialog from "@/components/Dialog"
 export default function Feed() {
   const [currentPostId, setCurrentPostId] = useState(14)
   const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/publications`, fetcher)
-  const { data: currentComments, error: commentsError } = useSWR(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comment/${currentPostId}`, fetcher)
+  const commentsEndpoint = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comment/${currentPostId}`
+  const { data: currentComments, error: commentsError } = useSWR(commentsEndpoint, fetcher)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   if (data) {
     return (
       <>
-        <MyDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} comments={currentComments} currentPostId={currentPostId} />
+        <MyDialog 
+          isOpen={isDialogOpen} 
+          setIsOpen={setIsDialogOpen} 
+          comments={currentComments} 
+          currentPostId={currentPostId}
+          commentsEndpoint={`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comment/${currentPostId}`}
+        />
         <div className="w-full py-10">
           <div className="max-w-3xl mx-auto sm:px-6">
             <main>
