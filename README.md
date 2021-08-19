@@ -40,7 +40,7 @@ $ yarn
 Pour le développement
 
 ```bash
-yarn dev
+$ yarn dev
 ```
 
 Puis ouvrez votre navigateur à l'adresse https://localhost:3001
@@ -48,8 +48,8 @@ Puis ouvrez votre navigateur à l'adresse https://localhost:3001
 Pour la production
 
 ```bash
-yarn build
-yarn start
+$ yarn build
+$ yarn start
 ```
 
 Puis ouvrez votre navigateur à l'adresse https://localhost:3001
