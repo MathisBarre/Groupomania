@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Groupomania - Front-end
 
-## Getting Started
+Front-end du septième projet du parcours développeur web chez OpenClassrooms
+Le projet consiste à construire un réseau social interne pour les employés de Groupomania.
+Pour ce MVP, il a été décidé de partir sur un clone de 9GAG
 
-First, run the development server:
+## User stories
+
+- [x] En tant qu'employé je veux créer et me connecter à un compte
+- [x] En tant qu'employé je veux pouvoir partager des GIFs
+- [x] En tant qu'employé je veux pouvoir voir les GIFs des autres employés
+- [x] En tant qu'employé je veux pouvoir voir et écrire des commentaires sur les publications
+
+## Technologies utilisées
+
+- **Front-end :** React, NextJs
+- **Back-end :** Fastify, Prisma ORM & MySQL
+
+## Installation & lancement
+
+### Pré-requis
+
+- Node.js 14
+- Yarn 1.22
+
+### Cloner le projet
 
 ```bash
-npm run dev
-# or
+$ git clone https://github.com/MathisBarre/MathisBarre_7_01082021_front-end.git
+```
+
+### Installer les dépendances
+
+```bash
+$ yarn
+```
+
+### Lancer le projet
+
+Pour le développement
+
+```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Puis ouvrez votre navigateur à l'adresse https://localhost:3001
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Pour la production
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+yarn build
+yarn start
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Puis ouvrez votre navigateur à l'adresse https://localhost:3001
