@@ -41,17 +41,19 @@ $ git clone https://github.com/MathisBarre/MathisBarre_7_01082021_front-end.git
 $ yarn
 ```
 
-### 4. Lancer le projet
+### 4. Completer les environnements de variable
 
-Pour le développement
+Renommer le fichier `example.env.local` en `.env.local` et puis modifier la valeur des informations si besoin.
+
+### 5. Lancer le projet
+
+#### Pour le développement
 
 ```bash
 $ yarn dev
 ```
 
-Puis ouvrez votre navigateur à l'adresse https://localhost:3001
-
-Pour la production
+#### Pour la production
 
 ```bash
 $ yarn build
