@@ -8,7 +8,7 @@ import MyDialog from "@/components/Dialog"
 export default function Feed() {
   const [currentPostId, setCurrentPostId] = useState(14)
   const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/publications`, fetcher)
-  const commentsEndpoint = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comment/${currentPostId}`
+  const commentsEndpoint = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comments/${currentPostId}`
   const { data: currentComments, error: commentsError } = useSWR(commentsEndpoint, fetcher)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
@@ -20,7 +20,7 @@ export default function Feed() {
           setIsOpen={setIsDialogOpen} 
           comments={currentComments} 
           currentPostId={currentPostId}
-          commentsEndpoint={`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comment/${currentPostId}`}
+          commentsEndpoint={`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/comments/${currentPostId}`}
         />
         <div className="w-full py-10">
           <div className="max-w-3xl mx-auto sm:px-6">
