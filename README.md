@@ -62,4 +62,4 @@ $ yarn build
 $ yarn start
 ```
 
-Puis ouvrez votre navigateur à l'adresse https://localhost:3001
+Puis ouvrez votre navigateur à l'adresse https://localhost:3000
