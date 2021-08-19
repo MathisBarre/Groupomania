@@ -1,8 +1,10 @@
-# Groupomania - Front-end
+# Groupomania - front-end
 
 Front-end du septième projet du parcours développeur web chez OpenClassrooms
 Le projet consiste à construire un réseau social interne pour les employés de Groupomania.
 Pour ce MVP, il a été décidé de partir sur un clone de 9GAG
+
+[Repository du back-end](https://github.com/MathisBarre/MathisBarre_7_01082021_back-end)
 
 ![screenshot page d'accueil](https://groupomania.mathisbarre.com/images/screenshot.png)
 
