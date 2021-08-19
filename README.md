@@ -41,7 +41,7 @@ $ git clone https://github.com/MathisBarre/MathisBarre_7_01082021_front-end.git
 $ yarn
 ```
 
-### 4. Completer les environnements de variable
+### 4. Completer les variable d'environnements
 
 Renommer le fichier `example.env.local` en `.env.local` et puis modifier la valeur des informations si besoin.
 
