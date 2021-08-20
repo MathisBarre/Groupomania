@@ -4,18 +4,21 @@ import { useRouter } from "next/router"
 import createPublication from "@/api/createPublication";
 import { XCircleIcon } from '@heroicons/react/solid'
 import FormButton from "@/components/FormButton";
+import { useConnectedUserContext } from "@/pages/_app"
 
 export default function NewPublication() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const router = useRouter()
   const [errorMessage, seterrorMessage] = useState(null)
   const [publicationIsPosting, setPublicationIsPosting] = useState(false)
+  const { connectedUser, setConnectedUser } = useConnectedUserContext()
+
   
   async function onSubmit(data) {
     try {
       seterrorMessage(null)
       setPublicationIsPosting(true)
-      await createPublication(data.title, data.externalGifURl)
+      await createPublication(data.title, data.externalGifURl, connectedUser.id)
       router.push("/feed")
     } catch(error) {
       seterrorMessage(error.message)
