@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import '@/styles/globals.css'
 import Header from "@/components/Header"
 import { useCookies } from "react-cookie"
+import NextNprogress from 'nextjs-progressbar';
 
 const ConnectedUserContext = createContext(null);
 
@@ -19,12 +20,22 @@ function MyApp({ Component, pageProps }) {
         <title>Groupomania</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <div className="flex flex-col min-h-screen bg-gray-100">
-          <ConnectedUserContext.Provider value={{ connectedUser, setConnectedUser }}>
-            {(router.pathname === "/" || router.pathname === "/admin") ? "" : <Header />}
-              <Component {...pageProps} />
-          </ConnectedUserContext.Provider>
-        </div>
+        <ConnectedUserContext.Provider value={{ connectedUser, setConnectedUser }}>
+          {(router.pathname === "/" || router.pathname === "/admin") ? "" : <Header />}
+            <div id="mycontainer" className="flex flex-col min-h-screen bg-gray-100">
+              <NextNprogress
+                color="#fd2d01"
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={4}
+                showOnShallow={true}
+                options={{
+                  parent: "#mycontainer"
+                }}
+              />
+              <Component id="mycontainer" {...pageProps} />
+            </div>
+        </ConnectedUserContext.Provider>
     </div>
   )
 }
