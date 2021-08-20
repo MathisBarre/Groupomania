@@ -2,7 +2,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
-import { XCircleIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
+import { XCircleIcon, CheckCircleIcon } from '@heroicons/react/solid'
 import { useConnectedUserContext } from "@/pages/_app"
 import FormButton from "@/components/FormButton"
 import updateUser from "@/api/updateUser"
@@ -12,16 +12,21 @@ export default function Profil() {
   const router = useRouter()
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const [errorMessage, setErrorMessage] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
   const [isUserUpdating, setIsUserUpdating] = useState(false)
 
   async function onSubmit({ email, displayName, profileImage }) {
     try {
+      setErrorMessage(null)
+      setSuccessMessage(null)
       setIsUserUpdating(true)
       const updatedUser = await updateUser(email, displayName, profileImage)
       setConnectedUser(updatedUser)
       setIsUserUpdating(false)
+      setSuccessMessage("Mise à jour effectuée avec succès")
     } catch (error) {
       setIsUserUpdating(false)
+      setSuccessMessage(null)
       setErrorMessage(error)
     }
   }
@@ -82,16 +87,18 @@ export default function Profil() {
           </div>
         </div> }
 
+        { (successMessage) && <div className="p-4 mt-4 rounded-md bg-green-50">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <CheckCircleIcon className="w-5 h-5 text-green-400" aria-hidden="true" />
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-green-800">{ successMessage }</h3>
+            </div>
+          </div>
+        </div> }
+
       </section>
     </main>
-  )
-}
-
-function Badge({ text, conditionIsFulfilled }) {
-  return (
-    <li className={`${conditionIsFulfilled() ? 'text-green-700 bg-green-100' : 'text-gray-700 bg-gray-100'} inline-flex items-center px-2 py-1 m-1  rounded-full `}>
-      { conditionIsFulfilled() ? <CheckIcon className="h-4 mr-1" /> : <XIcon className="h-4 mr-1" />}
-      { text }
-    </li>
   )
 }
