@@ -1,5 +1,5 @@
 import { useState } from "react"
-import useSWR, { mutate } from "swr"
+import useSWR from "swr"
 import fetcher from "@/api/fetcher"
 import Post from "@/components/Post"
 import WarningAlert from "@/components/WarningAlert"
