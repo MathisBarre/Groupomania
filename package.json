@@ -13,6 +13,7 @@
     "@heroicons/react": "^1.0.3",
     "@tailwindcss/forms": "^0.3.3",
     "axios": "^0.21.1",
+    "dayjs": "^1.10.6",
     "next": "11.0.1",
     "nextjs-progressbar": "^0.0.11",
     "react": "17.0.2",

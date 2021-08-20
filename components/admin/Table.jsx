@@ -44,7 +44,7 @@ function TableRow({ person, index }) {
       <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.display_name}</td>
       <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.email}</td>
       <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.role}</td>
-      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.date_creation_fr}</td>
+      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">{person.date_creation}</td>
       {/* <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
         <a href="#" className="text-indigo-600 hover:text-indigo-900">
           Edit

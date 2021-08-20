@@ -1,6 +1,6 @@
-import Image from "next/image"
-import defaultProfileImage from "@/public/images/default-profil-image.svg"
 import { ChatAltIcon } from "@heroicons/react/solid"
+import dayjs from "dayjs"
+import "dayjs/locale/fr"
 
 export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
   return (
@@ -23,7 +23,7 @@ export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
                 </p>
                 <p className="text-sm text-gray-500">
                   <a href={post.href} className="">
-                    <time dateTime={post.date_creation}>{post.date_creation_fr}</time>
+                    <time dateTime={post.date_creation}>{dayjs(post.date_creation).locale("fr").format("DD MMMM YYYY [à] HH:mm")}</time>
                   </a>
                 </p>
               </div>
