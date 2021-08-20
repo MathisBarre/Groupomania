@@ -10,13 +10,6 @@ import { useCookies } from "react-cookie"
 import disconnectUser from "@/api/disconnectUser"
 import classNames from "@/utils/classNames"
 
-const user = {
-  name: 'Chelsea Hagon',
-  email: 'chelseahagon@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
-
 export default function Header() {
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const [ cookies, setCookie, removeCookie ] = useCookies(["connectedUser"])
