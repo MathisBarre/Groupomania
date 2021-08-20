@@ -1,16 +1,19 @@
-import Image from "next/image"
-import defaultProfileImage from "@/public/images/default-profil-image.svg"
+import dayjs from "dayjs"
+import "dayjs/locale/fr"
 
 export default function Comments({ comments }) {
   if (comments && comments[0]) {
+    console.log(comments)
     return (
       <div className="space-y-4">
         { comments.map((comment) => (
+
           <Comment
             key={comment.id} 
             displayName={comment.user.display_name} 
             content={comment.content} 
             image={comment.user.profile_image_url}
+            dateCreation={comment.date_creation}
           />
         ))}
       </div>
@@ -22,7 +25,7 @@ export default function Comments({ comments }) {
   }
 }
 
-function Comment({ displayName, content, image }) {
+function Comment({ displayName, content, image, dateCreation }) {
   return (
     <div className="flex">
       <div className="flex-shrink-0 mr-4">
@@ -34,7 +37,15 @@ function Comment({ displayName, content, image }) {
         />
       </div>
       <div>
-        <h4 className="font-semibold text-md">{ displayName }</h4>
+        <h4 className="font-semibold text-md">
+          { displayName }
+          <time 
+            className="ml-2 text-sm text-gray-400" 
+            dateTime={dateCreation}
+          >
+            {dayjs(dateCreation).locale("fr").format("DD/MM/YY HH[h]mm")}
+          </time>
+        </h4>
         <p>
           { content }
         </p>
