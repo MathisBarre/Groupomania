@@ -6,7 +6,7 @@ import classNames from "@/utils/classNames"
 import deleteOnePublication from "@/api/deleteOnePublication"
 import { mutate } from 'swr';
 
-export default function PublicationDropdown({ publication }) {
+export default function PublicationDropdown({ publication, setShowUpdateUi }) {
 
   async function deleteAction() {
     try {
@@ -37,7 +37,7 @@ export default function PublicationDropdown({ publication }) {
       >
         <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {/* <MenuItem text="Modifier" Icon={PencilAltIcon} /> */}
+            <MenuItem text="Modifier" Icon={PencilAltIcon} onClick={() => { setShowUpdateUi(true) }} />
             <MenuItem text="Supprimer" Icon={TrashIcon} onClick={deleteAction} />
           </div>
         </Menu.Items>
