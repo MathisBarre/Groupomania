@@ -24,10 +24,10 @@ function MyApp({ Component, pageProps }) {
           {(router.pathname === "/" || router.pathname === "/admin") ? "" : <Header />}
             <div id="mycontainer" className="flex flex-col min-h-screen bg-gray-100">
               <NextNprogress
-                color="#fd2d01"
+                color="#E11D48"
                 startPosition={0.3}
                 stopDelayMs={200}
-                height={4}
+                height={2}
                 showOnShallow={true}
                 options={{
                   parent: "#mycontainer"
