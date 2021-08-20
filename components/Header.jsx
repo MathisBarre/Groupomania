@@ -8,7 +8,7 @@ import { useConnectedUserContext } from "@/pages/_app"
 import groupomaniaLogo from "@/public/images/logos/icon-left-font.svg"
 import { useCookies } from "react-cookie"
 import disconnectUser from "@/api/disconnectUser"
-import classNames from "@/utils/classenames.js"
+import classNames from "@/utils/classNames"
 
 const user = {
   name: 'Chelsea Hagon',
