@@ -60,13 +60,13 @@ export default function MyDialog({ isOpen, setIsOpen, comments, currentPostId, c
                   </Dialog.Title>
                   <Comments comments={comments} />
                   <NewComment currentPostId={currentPostId} commentsEndpoint={commentsEndpoint} />
-                    <button
-                      type="button"
-                      className="absolute flex items-center justify-center w-8 h-8 bg-gray-200 rounded right-10 top-14"
-                      onClick={closeModal}
-                    >
-                      <XIcon className="w-4 h-4" />
-                    </button>
+                  <button
+                    type="button"
+                    className="absolute flex items-center justify-center w-8 h-8 bg-gray-200 rounded right-10 top-14"
+                    onClick={closeModal}
+                  >
+                    <XIcon className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             </Transition.Child>
