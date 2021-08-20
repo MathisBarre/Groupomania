@@ -91,7 +91,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <HeaderMobile profileNavigation={profileNavigation} />
+          <HeaderMobile profileNavigation={profileNavigation} connectedUser={connectedUser} />
         </>
       )}
     </Popover>
@@ -108,6 +108,7 @@ function ProfileMenu({ profileNavigation }) {
           <div>
             <Menu.Button className="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500">
               <span className="sr-only">Open user menu</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 className="w-8 h-8 rounded-full" 
                 src={(connectedUser.profileImageUrl === "") ? "/images/default-profil-image.svg" : connectedUser.profileImageUrl} 
@@ -186,52 +187,61 @@ function HeaderLink({ text, href, secondary, className }) {
   )
 }
 
-function HeaderMobile({ profileNavigation }) {
+function HeaderMobile({ profileNavigation, connectedUser }) {
   return (
     <Popover.Panel as="nav" className="sm:hidden" aria-label="Global">
       <div className="pt-4 pb-3">
-        <div className="flex items-center max-w-3xl px-4 mx-auto sm:px-6">
-          <div className="flex-shrink-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="w-10 h-10 rounded-full" src={user.imageUrl} alt="" />
+        {
+          connectedUser ? ( 
+            <>
+              <div className="flex items-center max-w-3xl px-4 mx-auto sm:px-6">
+                <div className="flex-shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
+                    className="w-10 h-10 rounded-full" 
+                    src={(connectedUser?.profileImageUrl === "") ? "/images/default-profil-image.svg" : connectedUser?.profileImageUrl} 
+                    height="40" width="40"
+                    alt="" 
+                  />
+                </div>
+                <div className="ml-3">
+                  <div className="text-base font-medium text-gray-800">{connectedUser?.displayName}</div>
+                  <div className="text-sm font-medium text-gray-500">{connectedUser?.email}</div>
+                </div>
+              </div>
+              <div className="max-w-3xl px-2 mx-auto mt-3 space-y-1 sm:px-4">
+              {profileNavigation.map((item) => {
+                if (item.onClick) {
+                  return <button
+                    key={item.name}
+                    onClick={item.onClick}
+                    className="block w-full px-3 py-2 text-base font-medium text-left text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                  >
+                    {item.name}
+                  </button>
+                }
+                else {
+                  return <Link key={item.name} href={item.href}>
+                    <a
+                      key={item.name}
+                      
+                      className="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
+                }
+              })}
+            </div>
+          </>
+          )
+        : (
+          <div className="px-4 py-4">
+            <HeaderLink text="Se connecter" href="/login" secondary className="justify-center w-full mb-2" />
+            <HeaderLink text="S'inscrire" href="/signup" className="justify-center w-full mb-2" />
           </div>
-          <div className="ml-3">
-            <div className="text-base font-medium text-gray-800">{user.name}</div>
-            <div className="text-sm font-medium text-gray-500">{user.email}</div>
-          </div>
-          <button
-            type="button"
-            className="flex-shrink-0 p-1 ml-auto text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500"
-          >
-            <span className="sr-only">View notifications</span>
-            <BellIcon className="w-6 h-6" aria-hidden="true" />
-          </button>
-        </div>
-        <div className="max-w-3xl px-2 mx-auto mt-3 space-y-1 sm:px-4">
-          {profileNavigation.map((item) => {
-            if (item.onClick) {
-              return <button
-                key={item.name}
-                onClick={item.onClick}
-                className="block w-full px-3 py-2 text-base font-medium text-left text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
-              >
-                {item.name}
-              </button>
-            }
-
-            else {
-              return <Link key={item.name} href={item.href}>
-                <a
-                  key={item.name}
-                  
-                  className="block px-3 py-2 text-base font-medium text-gray-500 rounded-md hover:bg-gray-50 hover:text-gray-900"
-                >
-                  {item.name}
-                </a>
-              </Link>
-            }
-          })}
-        </div>
+        )}
+        
       </div>
     </Popover.Panel>
   )
