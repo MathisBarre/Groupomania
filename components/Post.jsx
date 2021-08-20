@@ -10,7 +10,12 @@ export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
           <div>
             <div className="flex space-x-3">
               <div className="flex-shrink-0">
-                <Image className="w-10 h-10 rounded-full" src={post.userprofileImageUrl || defaultProfileImage} height="40" width="40" alt="" />
+                <img 
+                  className="w-10 h-10 rounded-full" 
+                  src={(post.user.profile_image_url === "") ? "/images/default-profil-image.svg" : post.user.profile_image_url} 
+                  height="40" width="40" 
+                  alt=""
+                  />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900">

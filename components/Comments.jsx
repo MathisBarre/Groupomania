@@ -26,7 +26,12 @@ function Comment({ displayName, content, image }) {
   return (
     <div className="flex">
       <div className="flex-shrink-0 mr-4">
-        <Image className="w-10 h-10 rounded-full" src={image || defaultProfileImage} height="40" width="40" alt="" />
+        <img 
+          className="w-10 h-10 rounded-full" 
+          src={(image === "") ? "/images/default-profil-image.svg" : image} 
+          height="40" width="40" 
+          alt=""
+        />
       </div>
       <div>
         <h4 className="font-semibold text-md">{ displayName }</h4>
