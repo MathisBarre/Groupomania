@@ -27,7 +27,7 @@ export default function Profil() {
     } catch (error) {
       setIsUserUpdating(false)
       setSuccessMessage(null)
-      setErrorMessage(error)
+      setErrorMessage(error.message)
     }
   }
 
