@@ -3,7 +3,7 @@ import useSWR, { mutate } from "swr"
 import fetcher from "@/api/fetcher"
 import Post from "@/components/Post"
 import WarningAlert from "@/components/WarningAlert"
-import MyDialog from "@/components/Dialog"
+import MyDialog from "@/components/CommentsDialog"
 
 export default function Feed() {
   const [currentPostId, setCurrentPostId] = useState(14)
