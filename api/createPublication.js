@@ -1,11 +1,10 @@
-export default async function createPublication(title, gifUrl, authorId) {
+export default async function createPublication(title, gifUrl) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/publications`, {
     method: "POST",
     credentials: "include",
     body: JSON.stringify({
       title,
       imageUrl: gifUrl,
-      authorId: authorId
     }),
     headers: {
       'Content-type': 'application/json'

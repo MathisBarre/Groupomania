@@ -18,7 +18,7 @@ export default function NewPublication() {
     try {
       seterrorMessage(null)
       setPublicationIsPosting(true)
-      await createPublication(data.title, data.externalGifURl, connectedUser.id)
+      await createPublication(data.title, data.externalGifURl)
       router.push("/feed")
     } catch(error) {
       seterrorMessage(error.message)
