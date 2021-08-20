@@ -22,9 +22,7 @@ export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
                   {post.user.display_name}
                 </p>
                 <p className="text-sm text-gray-500">
-                  <a href={post.href} className="">
-                    <time dateTime={post.date_creation}>{dayjs(post.date_creation).locale("fr").format("DD MMMM YYYY [à] HH:mm")}</time>
-                  </a>
+                  <time dateTime={post.date_creation}>{dayjs(post.date_creation).locale("fr").format("DD MMMM YYYY [à] HH[h]mm")}</time>
                 </p>
               </div>
             </div>
