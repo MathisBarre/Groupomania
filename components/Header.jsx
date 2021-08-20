@@ -7,9 +7,8 @@ import { Popover, Menu, Transition } from '@headlessui/react'
 import { useConnectedUserContext } from "@/pages/_app"
 import groupomaniaLogo from "@/public/images/logos/icon-left-font.svg"
 import { useCookies } from "react-cookie"
-import defaultProfileImage from "@/public/images/default-profil-image.svg"
 import disconnectUser from "@/api/disconnectUser"
-import classNames from "@/utils/classenames"
+import classNames from "@/utils/classenames.js"
 
 const user = {
   name: 'Chelsea Hagon',
