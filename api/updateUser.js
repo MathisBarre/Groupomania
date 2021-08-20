@@ -5,7 +5,7 @@ export default async function updateUser(email, displayName, profileImageUrl) {
     body: JSON.stringify({
       email: email,
       display_name: displayName,
-      profile_image_url: profileImageUrl
+      profile_image_url: (profileImageUrl === "") ? null : profileImageUrl 
     }),
     headers: {
       "Content-Type": "application/json"

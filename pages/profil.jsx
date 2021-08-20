@@ -4,16 +4,26 @@ import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { XCircleIcon, CheckIcon, XIcon } from '@heroicons/react/solid'
 import { useConnectedUserContext } from "@/pages/_app"
-
+import FormButton from "@/components/FormButton"
+import updateUser from "@/api/updateUser"
 
 export default function Profil() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
   const { connectedUser, setConnectedUser } = useConnectedUserContext()
   const [errorMessage, setErrorMessage] = useState(null)
+  const [isUserUpdating, setIsUserUpdating] = useState(false)
 
-  function onSubmit() {
-    alert("submit")
+  async function onSubmit({ email, displayName, profileImage }) {
+    try {
+      setIsUserUpdating(true)
+      const updatedUser = await updateUser(email, displayName, profileImage)
+      setConnectedUser(updatedUser)
+      setIsUserUpdating(false)
+    } catch (error) {
+      setIsUserUpdating(false)
+      setErrorMessage(error)
+    }
   }
 
   return (
@@ -51,17 +61,12 @@ export default function Profil() {
               defaultValue={connectedUser?.profileImageUrl || ""}
               className={`block w-full mt-1 ${errors.profileImage ? "invalid-input" : "valid-input"} input`} 
               type="text" 
-              {...register("profileImage", { required: true })}
+              {...register("profileImage", { required: false })}
             />
-            { errors.profileImage && <p className="text-red-500">Le pseudonyme doit être renseigné !</p> }
           </div>
 
           <div className="flex items-center mt-4">
-            <input 
-              className="w-full px-4 py-2 font-medium text-white transition duration-75 border border-transparent rounded-md shadow-sm cursor-pointer bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500" 
-              type="submit" 
-              value="Mettre à jour le compte" 
-            />
+            <FormButton text="Mettre à jour" loading={isUserUpdating} />
           </div>
 
         </form>
