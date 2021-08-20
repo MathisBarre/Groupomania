@@ -1,8 +1,12 @@
 import { ChatAltIcon } from "@heroicons/react/solid"
 import dayjs from "dayjs"
 import "dayjs/locale/fr"
+import PublicationDropdown from "@/components/PublicationDropdown"
+import { useConnectedUserContext } from "@/pages/_app"
 
 export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
+  const { connectedUser, setConnectedUser } = useConnectedUserContext()
+
   return (
     <>
       <li key={post.id} className="px-4 py-6 bg-white shadow sm:p-6 sm:rounded-lg">
@@ -25,6 +29,7 @@ export default function Post({ post, setIsDialogOpen, setCurrentPostId }) {
                   <time dateTime={post.date_creation}>{dayjs(post.date_creation).locale("fr").format("DD MMMM YYYY [à] HH[h]mm")}</time>
                 </p>
               </div>
+              {(connectedUser?.role === "admin" || connectedUser?.id === post.user.id) && <PublicationDropdown publication={post} />}
             </div>
             <h2 id={'post-title-' + post.id} className="mt-4 text-base font-medium text-gray-900">
               {post.title}
