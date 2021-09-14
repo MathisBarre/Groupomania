@@ -22,7 +22,7 @@ export default function Header() {
         disconnectUser()
         removeCookie("connectedUser")
         setConnectedUser(null)
-        router.push("/login")
+        router.push("/")
       } catch {
         alert("error during logout")
       }
@@ -69,17 +69,10 @@ export default function Header() {
                 </Popover.Button>
               </div>
               <div className="hidden sm:flex sm:items-center sm:justify-end">
-                {
-                  (connectedUser) ?
-                  <div className="flex items-center">
-                    <ProfileMenu profileNavigation={profileNavigation} />
-                    <HeaderLink text="Nouvelle publication" href="/new-publication" className="ml-4" />
-                  </div>
-                : <>
-                    <HeaderLink text="Se connecter" href="/login" secondary className="mr-2" />
-                    <HeaderLink text="S'inscrire" href="/signup" />
-                  </>
-                }
+                <div className="flex items-center">
+                  { connectedUser && <ProfileMenu profileNavigation={profileNavigation} />}
+                  <HeaderLink text="Nouvelle publication" href="/new-publication" className="ml-4" />
+                </div>
               </div>
             </div>
           </div>
@@ -183,9 +176,6 @@ function HeaderMobile({ profileNavigation, connectedUser }) {
   return (
     <Popover.Panel as="nav" className="sm:hidden" aria-label="Global">
       <div className="pt-4 pb-3">
-        {
-          connectedUser ? ( 
-            <>
               <div className="flex items-center max-w-3xl px-4 mx-auto sm:px-6">
                 <div className="flex-shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -225,14 +215,6 @@ function HeaderMobile({ profileNavigation, connectedUser }) {
                 }
               })}
             </div>
-          </>
-          )
-        : (
-          <div className="px-4 py-4">
-            <HeaderLink text="Se connecter" href="/login" secondary className="justify-center w-full mb-2" />
-            <HeaderLink text="S'inscrire" href="/signup" className="justify-center w-full mb-2" />
-          </div>
-        )}
         
       </div>
     </Popover.Panel>
