@@ -22,7 +22,7 @@ export async function connectDemoUser(payload) {
   await sleep(500)
 
   if (payload.email === "demo@mail.com" && payload.password === "aA123456789") {
-    return { email: payload.email }
+    return { email: payload.email, displayName: "Compte démo", profileImageUrl: "/images/default-profil-image.svg" }
   } else {
     throw new Error("Mauvaise adresse e-mail ou mot de passe")
   }
