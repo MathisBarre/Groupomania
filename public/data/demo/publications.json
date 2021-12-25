@@ -1,0 +1,13 @@
+[
+  {
+    "image_url": "https://f.hellowork.com/blogdumoderateur/2013/02/nyan-cat-gif-1.gif",
+    "date_creation": "2021-12-25T12:00:00",
+    "user": {
+      "display_name": "John Doe",
+      "profile_image_url": "/images/default-profil-image.svg"
+    },
+    "_count": {
+      "comment": 3
+    }
+  }
+]

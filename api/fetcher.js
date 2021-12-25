@@ -1,4 +1,7 @@
 export default async function fetcher(url) {
+  console.log(url)
+  if (process.env.NEXT_PUBLIC_DEMO_MODE) url = url + ".json"
+
   const response = await fetch(url, {
     credentials: "include"
   })
