@@ -1,4 +1,4 @@
-export default async function connectUser(payload) {
+export async function connectUser(payload) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/auth/login`, {
     method: "POST",
     credentials: "include",
@@ -14,4 +14,12 @@ export default async function connectUser(payload) {
   }
 
   return await response.json()
+}
+
+export async function connectDemoUser(payload) {
+  if (payload.email === "demo@mail.com" && payload.password === "aA123456789") {
+    return { email: payload.email }
+  } else {
+    throw new Error("Mauvaise adresse e-mail ou mot de passe")
+  }
 }

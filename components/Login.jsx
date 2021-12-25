@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { useConnectedUserContext } from "@/pages/_app"
-import connectUser from "@/api/connectUser"
+import {connectUser, connectDemoUser} from "@/api/connectUser"
 import { XCircleIcon } from '@heroicons/react/solid'
 import FormButton from "@/components/FormButton"
 
@@ -14,11 +14,18 @@ export default function Login() {
   const [requestSending, setRequestSending] = useState(false)
 
   
-  async function onSubmit({ email, password}) {
+  async function onSubmit({ email, password }) {
     try {
+      let user
       setRequestSending(true)
       setErrorMessage(null)
-      const user = await connectUser({ email, password })
+      
+      if (process.env.NEXT_PUBLIC_DEMO_MODE) {
+        user = await connectDemoUser({ email, password })
+      } else {
+        user = await connectUser({ email, password })
+      }
+      
       setConnectedUser(user)
       setRequestSending(false)
       router.push("/feed")
