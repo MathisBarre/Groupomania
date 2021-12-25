@@ -1,3 +1,5 @@
+import { sleep } from "@/utils/usefullFunctions";
+
 export async function connectUser(payload) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/auth/login`, {
     method: "POST",
@@ -17,6 +19,8 @@ export async function connectUser(payload) {
 }
 
 export async function connectDemoUser(payload) {
+  await sleep(500)
+
   if (payload.email === "demo@mail.com" && payload.password === "aA123456789") {
     return { email: payload.email }
   } else {
