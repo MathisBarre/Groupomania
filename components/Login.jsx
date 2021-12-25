@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 import { useConnectedUserContext } from "@/pages/_app"
@@ -8,7 +7,7 @@ import { XCircleIcon } from '@heroicons/react/solid'
 import FormButton from "@/components/FormButton"
 
 export default function Login() {
-  const { connectedUser, setConnectedUser } = useConnectedUserContext()
+  const { setConnectedUser } = useConnectedUserContext()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
   const [errorMessage, setErrorMessage] = useState(null)
