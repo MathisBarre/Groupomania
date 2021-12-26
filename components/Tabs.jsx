@@ -2,27 +2,25 @@ import { useState } from 'react'
 import { Tab } from '@headlessui/react'
 import Login from "@/components/Login"
 import Signup from "@/components/Signup"
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import classNames from '@/utils/classNames'
 
 export default function Example() {
   const tabNames = ["Se connecter", "Créer un compte"]
 
   return (
-    <div className="w-full px-2 pt-16 sm:px-0">
+    <div className="w-full">
       <Tab.Group>
-        <Tab.List className="flex space-x-2 rounded-xl">
-          {tabNames.map((name) => (
+        <Tab.List className="flex space-x-2">
+          {tabNames.map((name, index) => (
             <Tab
               key={name}
               className={({ selected }) =>
                 classNames(
-                  'w-full py-4 text-sm leading-5 font-bold text-rose-700 rounded-lg',
+                  'w-full py-4 text-sm leading-5 font-bold text-rose-700 sm:rounded-lg',
                   selected
                     ? 'bg-white shadow'
-                    : 'text-rose-100 hover:bg-white/[0.12] hover:text-white'
+                    : 'text-rose-100 hover:bg-white/[0.12] hover:text-white',
+                  index === 0 ? "rounded-r-lg" : "rounded-l-lg"
                 )
               }
             >

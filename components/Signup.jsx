@@ -59,7 +59,7 @@ export default function Signup() {
   }
 
   return (
-    <section className="flex flex-col w-full px-4 py-6 bg-white rounded-lg shadow sm:p-6">
+    <section className="flex flex-col w-full px-4 py-6 bg-white sm:rounded-lg shadow sm:p-6">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
 
         <div className="flex flex-col">
