@@ -7,7 +7,7 @@ export default function Error404() {
   return (
     <div className="flex flex-col items-center justify-center flex-1 h-full">
       <h1 className="text-3xl font-bold text-rose-600">Erreur 500</h1>
-      <p className="mb-6 text-gray-600">Le serveur a rencontré une erreur lors de la génération de votre page.</p>
+      <p className="mb-6 text-gray-600 text-left mx-4">Le serveur a rencontré une erreur lors de la génération de votre page.</p>
       <Image src={ServerExplode} className="rounded" alt="" />
       <Link href="/">
         <a
